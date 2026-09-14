@@ -31,7 +31,7 @@ postgresql:
 
 gitea:
   namespace: gitea
-  image: docker.io/gitea/gitea:1.22.6-rootless
+  image: quay.io/rhpds/gitea:latest
   admin:
     username: gitea-admin
     password: "" # required
@@ -40,11 +40,28 @@ gitea:
     size: 5Gi
     storageClass: ""
   resources:
-    requests: {cpu: 100m, memory: 256Mi}
-    limits: {cpu: 500m, memory: 512Mi}
+    requests: {cpu: 200m, memory: 1Gi}
+    limits: {cpu: 500m, memory: 1Gi}
   route:
-    host: ""
-
+    host: {{ .Values.gitea.rootUrl }}
+  app-ini: |
+    [database]
+    DB_TYPE = postgres
+    HOST = postgresql:5432
+    NAME = gitea
+    USER = gitea
+    PASSWD = ""
+    SSL_MODE = disable
+    INSTALL_LOCK = true
+    ROOT_URL = {{ .Values.gitea.rootUrl }}
+    [security]
+    INSTALL_LOCK = true
+    [server]
+    ROOT_URL = http://gitea:3000/
+    [session]
+    PROVIDER = file
+    SESSION_NAME = gitea
+    SESSION_SECURE = false
 datasphere:
   namespace: datasphere
   theme: earth

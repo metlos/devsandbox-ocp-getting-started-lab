@@ -16,6 +16,14 @@
         "kind": "generated-password"
       }
     },
+    "gitea.rootUrl": {
+      "type": "string",
+      "title": "gitea root url",
+      "description": "Root URL for Gitea deployment",
+      "x-interactive-labs": {
+        "kind": "root-url"
+      }
+    },
     "datasphere.namespace": {
       "type": "string",
       "title": "datasphere namespace",

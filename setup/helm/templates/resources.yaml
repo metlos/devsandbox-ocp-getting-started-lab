@@ -141,11 +141,32 @@ spec:
         - name: gitea
           image: {{ .Values.gitea.image | quote }}
           imagePullPolicy: {{ .Values.imagePullPolicy }}
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
           securityContext:
             {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           ports:
             - name: http
               containerPort: 3000
+              protocol: TCP
           env:
             - name: GITEA__database__DB_TYPE
               value: postgres
@@ -168,29 +189,31 @@ spec:
               value: {{ if .Values.gitea.route.host }}{{ printf "https://%s/" .Values.gitea.route.host | quote }}{{ else }}"http://gitea:3000/"{{ end }}
           resources:
             {{- toYaml .Values.gitea.resources | nindent 12 }}
-          readinessProbe:
-            httpGet:
-              path: /api/v1/version
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /api/v1/version
-              port: http
-            initialDelaySeconds: 20
-            periodSeconds: 10
           volumeMounts:
-            - name: gitea-config
-              mountPath: /etc/gitea
-            - name: data
-              mountPath: /var/lib/gitea
+            - mountPath: /gitea-repositories
+              name: gitea-repositories
+            - mountPath: /home/gitea/conf-import
+              name: gitea-config
       volumes:
-        - name: gitea-config
-          emptyDir: {}
-        - name: data
+        - name: gitea-repositories
           persistentVolumeClaim:
             claimName: gitea
+        - configMap:
+            defaultMode: 420
+            items:
+            - key: app.ini
+              path: app.ini
+            name: gitea-config
+          name: gitea-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitea-config
+  namespace: {{ .Values.gitea.namespace }}
+data:
+  app.ini: |
+    {{ .Values.gitea.app-ini | quote }}
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
@@ -456,7 +479,7 @@ spec:
           args:
             - |
               attempts=0
-              until gitea migrate; do
+              until gitea migrate --config /etc/gitea/app.ini ; do
                 attempts=$((attempts + 1))
                 [ "$attempts" -lt 60 ] || exit 1
                 sleep 2
