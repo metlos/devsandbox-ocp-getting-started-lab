@@ -45,20 +45,8 @@ gitea:
   resources:
     requests: {cpu: 200m, memory: 1Gi}
     limits: {cpu: 500m, memory: 1Gi}
-  route:
-    host: ""
+  rootUrl: "https://gitea:3000"
   appIni: |
-    [database]
-    DB_TYPE = postgres
-    HOST = postgresql:5432
-    NAME = gitea
-    USER = gitea
-    PASSWD = ""
-    SSL_MODE = disable
-    [security]
-    INSTALL_LOCK = true
-    [server]
-    ROOT_URL = http://gitea:3000/
     [session]
     PROVIDER = file
     SESSION_NAME = gitea

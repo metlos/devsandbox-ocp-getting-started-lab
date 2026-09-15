@@ -1,11 +1,11 @@
 {
   "properties": {
-    "cluster.ingressDomain": {
+    "gitea.rootUrl": {
       "type": "string",
-      "title": "cluster domain",
-      "description": "Domain name for cluster",
+      "title": "gitea root url",
+      "description": "Root URL for Gitea deployment",
       "x-interactive-labs": {
-        "kind": "cluster-ingress-domain"
+        "kind": "url"
       }
     },
     "gitea.namespace": {
