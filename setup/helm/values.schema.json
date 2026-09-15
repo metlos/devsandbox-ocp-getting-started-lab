@@ -1,5 +1,13 @@
 {
   "properties": {
+    "cluster.ingress.domain": {
+      "type": "string",
+      "title": "cluster domain",
+      "description": "Domain name for cluster",
+      "x-interactive-labs": {
+        "kind": "cluster-ingress-domain"
+      }
+    },
     "gitea.namespace": {
       "type": "string",
       "title": "gitea namespace",
@@ -14,16 +22,6 @@
       "description": "Password for Gitea admin user",
       "x-interactive-labs": {
         "kind": "generated-password"
-      }
-    },
-    "gitea.rootUrl": {
-      "type": "string",
-      "title": "gitea root url",
-      "description": "Root URL for Gitea deployment",
-      "x-interactive-labs": {
-        "kind": "root-url",
-        "routeName": "gitea",
-        "namespaceRef": "gitea.namespace"
       }
     },
     "datasphere.namespace": {

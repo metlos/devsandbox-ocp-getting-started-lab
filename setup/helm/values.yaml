@@ -1,5 +1,8 @@
 imagePullPolicy: IfNotPresent
 
+cluster:
+  domain: labs.redhat.com
+  
 lab:
   namespace: lab
 
@@ -43,7 +46,7 @@ gitea:
     requests: {cpu: 200m, memory: 1Gi}
     limits: {cpu: 500m, memory: 1Gi}
   route:
-    host: {{ .Values.gitea.rootUrl }}
+    host: https://gitea.{{ .Values.gitea.namespace }}.{{ .cluster.domain }}
   app-ini: |
     [database]
     DB_TYPE = postgres
@@ -53,7 +56,7 @@ gitea:
     PASSWD = ""
     SSL_MODE = disable
     INSTALL_LOCK = true
-    ROOT_URL = {{ .Values.gitea.rootUrl }}
+    ROOT_URL = https://gitea.{{ .Values.gitea.namespace }}.{{ .cluster.domain }}
     [security]
     INSTALL_LOCK = true
     [server]
