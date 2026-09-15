@@ -22,8 +22,8 @@ Copy the URL from the `HOST/PORT` column and open it in a new browser tab.
 [%collapsible]
 .Using the Web Console
 ====
-In the Core Platform view, click *`resource:project.openshift.io/v1/Project[scope=cluster,name={user}-datasphere][{user}-datasphere]`* in the 
-resource:project.openshift.io/v1/Project[][project list] to open it.
+In the Core Platform view expand the *console:qs-nav-home[Home]* menu item and click *`resource:project.openshift.io/v1/Project[scope=cluster,name={user}-datasphere][{user}-datasphere]`* in the 
+*resource:project.openshift.io/v1/Project[][project list] to open it.
 
 // SCREENSHOT NEEDED: Core Platform Projects list with {user}-datasphere highlighted/selected, showing the click target
 image::../../../assets/images/console-guide/lab-01-deploy-the-app/01-project-list-select-datasphere.png[Core Platform project list with user-datasphere highlighted]
