@@ -27,7 +27,7 @@ In the Core Platform view, click *`resource:project.openshift.io/v1/Project[scop
 // SCREENSHOT NEEDED: Core Platform Projects list with {user}-datasphere highlighted/selected, showing the click target
 image::../../../assets/images/console-guide/lab-01-deploy-the-app/01-project-list-select-datasphere.png[Core Platform project list with user-datasphere highlighted]
 
-In the left navigation, expand *console:qs-nav-networking[Networking]* and click *resource:route.openshift.io/v1/Route[Routes]*.
+In the left navigation, expand *console:qs-nav-networking[Networking]* and click *resource:route.openshift.io/v1/Route[][Routes]*.
 
 // SCREENSHOT NEEDED: Networking → Routes in {user}-datasphere showing datasphere-ui route with the URL in the Location column
 image::../../../assets/images/console-guide/lab-01-deploy-the-app/01b-routes-datasphere-ui.png[Routes list showing the datasphere-ui route and its URL in the Location column]
