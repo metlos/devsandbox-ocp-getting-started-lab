@@ -21,7 +21,9 @@
       "title": "gitea root url",
       "description": "Root URL for Gitea deployment",
       "x-interactive-labs": {
-        "kind": "root-url"
+        "kind": "root-url",
+        "routeName": "gitea",
+        "namespaceRef": "gitea.namespace"
       }
     },
     "datasphere.namespace": {
