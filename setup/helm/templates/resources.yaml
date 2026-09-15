@@ -186,7 +186,7 @@ spec:
             - name: GITEA__security__INSTALL_LOCK
               value: "true"
             - name: GITEA__server__ROOT_URL
-              value: {{ if .Values.gitea.route.host }}{{ printf "https://%s/" .Values.gitea.route.host | quote }}{{ else }}"http://gitea:3000/"{{ end }}
+              value: {{ if .Values.gitea.route.host }}{{ .Values.gitea.route.host | quote }}{{ else }}{{ include "gitea.rootUrl" . | quote }}{{ end }}
           resources:
             {{- toYaml .Values.gitea.resources | nindent 12 }}
           volumeMounts:
@@ -213,7 +213,7 @@ metadata:
   namespace: {{ .Values.gitea.namespace }}
 data:
   app.ini: |
-    {{ .Values.gitea.appIni | quote }}
+    {{- .Values.gitea.appIni | nindent 4 }}
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
