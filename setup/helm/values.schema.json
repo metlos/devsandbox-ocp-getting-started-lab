@@ -5,7 +5,9 @@
       "title": "gitea root url",
       "description": "Root URL for Gitea deployment",
       "x-interactive-labs": {
-        "kind": "url"
+        "kind": "root-url",
+        "routeName": "gitea",
+        "namespaceRef": "gitea.namespace"
       }
     },
     "gitea.namespace": {
