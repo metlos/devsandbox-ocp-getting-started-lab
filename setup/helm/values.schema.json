@@ -1,6 +1,6 @@
 {
   "properties": {
-    "cluster.ingress.domain": {
+    "cluster.ingressDomain": {
       "type": "string",
       "title": "cluster domain",
       "description": "Domain name for cluster",

@@ -213,7 +213,7 @@ metadata:
   namespace: {{ .Values.gitea.namespace }}
 data:
   app.ini: |
-    {{ .Values.gitea.app-ini | quote }}
+    {{ .Values.gitea.appIni | quote }}
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
