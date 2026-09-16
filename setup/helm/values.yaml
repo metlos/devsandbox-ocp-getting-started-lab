@@ -47,6 +47,8 @@ gitea:
     limits: {cpu: 500m, memory: 1Gi}
   rootUrl: "https://gitea:3000"
   appIni: |
+    [security]
+    INSTALL_LOCK = true
     [session]
     PROVIDER = file
     SESSION_NAME = gitea

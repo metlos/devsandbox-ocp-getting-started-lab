@@ -137,6 +137,28 @@ spec:
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: init-config
+          image: {{ .Values.gitea.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          command: ["/bin/sh", "-ec"]
+          args:
+            - |
+              cp /gitea-config-src/app.ini /home/gitea/conf/app.ini
+              printf '\nPASSWD = %s\n' "$GITEA_DB_PASSWD" >> /home/gitea/conf/app.ini
+          env:
+            - name: GITEA_DB_PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-postgresql-credentials
+                  key: POSTGRESQL_PASSWORD
+          volumeMounts:
+            - mountPath: /gitea-config-src
+              name: gitea-config-src
+            - mountPath: /home/gitea/conf
+              name: gitea-conf
       containers:
         - name: gitea
           image: {{ .Values.gitea.image | quote }}
@@ -167,44 +189,27 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
-          env:
-            - name: GITEA__SERVER__ROOT_URL
-              value: {{ printf "https://%s" .Values.gitea.rootUrl | quote }}
-            - name: GITEA__SECURITY__INSTALL_LOCK
-              value: "true"
-            - name: GITEA__DATABASE__DB_TYPE
-              value: postgres
-            - name: GITEA__DATABASE__HOST
-              value: postgresql:5432
-            - name: GITEA__DATABASE__SSL_MODE
-              value: disable
-            - name: GITEA__DATABASE__NAME
-              value: {{ .Values.postgresql.auth.database | quote }}
-            - name: GITEA__DATABASE__USER
-              value: {{ .Values.postgresql.auth.username | quote }}
-            - name: GITEA__DATABASE__PASSWD
-              valueFrom:
-                secretKeyRef:
-                  name: gitea-postgresql-credentials
-                  key: POSTGRESQL_PASSWORD
+          env: []
           resources:
             {{- toYaml .Values.gitea.resources | nindent 12 }}
           volumeMounts:
             - mountPath: /gitea-repositories
               name: gitea-repositories
-            - mountPath: /home/gitea/conf-import
-              name: gitea-config
+            - mountPath: /home/gitea/conf
+              name: gitea-conf
       volumes:
         - name: gitea-repositories
           persistentVolumeClaim:
             claimName: gitea
-        - configMap:
+        - name: gitea-conf
+          emptyDir: {}
+        - name: gitea-config-src
+          configMap:
+            name: gitea-config
             defaultMode: 420
             items:
-            - key: app.ini
-              path: app.ini
-            name: gitea-config
-          name: gitea-config
+              - key: app.ini
+                path: app.ini
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -214,6 +219,14 @@ metadata:
 data:
   app.ini: |
     {{- .Values.gitea.appIni | nindent 4 }}
+    [server]
+    ROOT_URL = {{ printf "https://%s" .Values.gitea.rootUrl }}
+    [database]
+    DB_TYPE  = postgres
+    HOST     = postgresql:5432
+    NAME     = {{ .Values.postgresql.auth.database }}
+    USER     = {{ .Values.postgresql.auth.username }}
+    SSL_MODE = disable
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
@@ -465,6 +478,39 @@ spec:
       restartPolicy: OnFailure
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: init-config
+          image: {{ .Values.gitea.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          command: ["/bin/sh", "-ec"]
+          args:
+            - |
+              cat > /gitea-config/app.ini <<CFG
+              [security]
+              INSTALL_LOCK = true
+              [database]
+              DB_TYPE  = postgres
+              HOST     = postgresql:5432
+              NAME     = $GITEA__DATABASE__NAME
+              USER     = $GITEA__DATABASE__USER
+              PASSWD   = $GITEA__DATABASE__PASSWD
+              SSL_MODE = disable
+              CFG
+          env:
+            - name: GITEA__DATABASE__NAME
+              value: {{ .Values.postgresql.auth.database | quote }}
+            - name: GITEA__DATABASE__USER
+              value: {{ .Values.postgresql.auth.username | quote }}
+            - name: GITEA__DATABASE__PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-postgresql-credentials
+                  key: POSTGRESQL_PASSWORD
+          volumeMounts:
+            - name: gitea-config
+              mountPath: /gitea-config
       containers:
         - name: gitea-admin-bootstrap
           image: {{ .Values.gitea.image | quote }}
@@ -476,19 +522,16 @@ spec:
           args:
             - |
               attempts=0
-              until ./gitea migrate ; do
+              until ./gitea migrate --config /gitea-config/app.ini ; do
                 attempts=$((attempts + 1))
                 [ "$attempts" -lt 60 ] || exit 1
                 sleep 2
               done
-              output=$(./gitea admin user create --admin --username "$GITEA_ADMIN_USERNAME" --password "$GITEA_ADMIN_PASSWORD" --email "$GITEA_ADMIN_EMAIL" 2>&1) && exit 0
+              output=$(./gitea admin user create --config /gitea-config/app.ini --admin --username "$GITEA_ADMIN_USERNAME" --password "$GITEA_ADMIN_PASSWORD" --email "$GITEA_ADMIN_EMAIL" 2>&1) && exit 0
               case "$output" in
                 *"already exists"*) exit 0 ;;
                 *) printf '%s\n' "$output" >&2; exit 1 ;;
               esac
-          volumeMounts:
-            - mountPath: /home/gitea/conf-import
-              name: gitea-config
           env:
             - name: GITEA_ADMIN_USERNAME
               value: {{ .Values.gitea.admin.username | quote }}
@@ -499,29 +542,12 @@ spec:
                   key: GITEA_ADMIN_PASSWORD
             - name: GITEA_ADMIN_EMAIL
               value: {{ .Values.gitea.admin.email | quote }}
-            - name: GITEA__DATABASE__DB_TYPE
-              value: postgres
-            - name: GITEA__DATABASE__SSL_MODE
-              value: disable
-            - name: GITEA__DATABASE__HOST
-              value: postgresql:5432
-            - name: GITEA__DATABASE__NAME
-              value: {{ .Values.postgresql.auth.database | quote }}
-            - name: GITEA__DATABASE__USER
-              value: {{ .Values.postgresql.auth.username | quote }}
-            - name: GITEA__DATABASE__PASSWD
-              valueFrom:
-                secretKeyRef:
-                  name: gitea-postgresql-credentials
-                  key: POSTGRESQL_PASSWORD
+          volumeMounts:
+            - name: gitea-config
+              mountPath: /gitea-config
       volumes:
         - name: gitea-config
-          configMap:
-            name: gitea-config
-            defaultMode: 420
-            items:
-              - key: app.ini
-                path: app.ini
+          emptyDir: {}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -548,42 +574,59 @@ spec:
           command: ["/bin/sh", "-ec"]
           args:
             - |
-              until curl --fail --silent --show-error http://gitea:3000/api/v1/version >/dev/null; do sleep 2; done
+              echo "Waiting for Gitea to be ready..."
+              until status=$(curl --silent --output /dev/null --write-out '%{http_code}' http://gitea:3000/api/healthz 2>/dev/null) && [ "$status" = "200" ]; do
+                echo "  Gitea returned $status, retrying..."
+                sleep 2
+              done
+              echo "Gitea is ready"
               workdir=$(mktemp -d)
               trap 'rm -rf "$workdir"' EXIT
-              curl --fail --location --silent --show-error --output "$workdir/source.tar.gz" "$REPO_SEED_ARCHIVE_URL"
+              echo "Downloading archive from $REPO_SEED_ARCHIVE_URL"
+              curl --fail --silent --location --show-error --output "$workdir/source.tar.gz" "$REPO_SEED_ARCHIVE_URL"
+              echo "Extracting archive..."
               tar -xzf "$workdir/source.tar.gz" -C "$workdir"
               source_root=$(find "$workdir" -mindepth 1 -maxdepth 1 -type d -print -quit)
-              [ -n "$source_root" ] || exit 1
+              echo "Source root: $source_root"
+              [ -n "$source_root" ] || { echo "ERROR: no source root found"; exit 1; }
 
               seed_repo() {
                 repo=$1 source_path=$2 create_payload=$3
                 source_dir="$source_root/$source_path"
-                [ -d "$source_dir" ] || return 1
+                echo "Seeding repo '$repo' from '$source_dir'"
+                [ -d "$source_dir" ] || { echo "ERROR: source dir '$source_dir' not found"; return 1; }
                 repo_url="http://gitea:3000/api/v1/repos/$GITEA_ADMIN_USERNAME/$repo"
+                echo "  Checking if repo exists: $repo_url"
                 status=$(curl --silent --show-error --output /tmp/response --write-out '%{http_code}' \
                   --user "$GITEA_ADMIN_USERNAME:$GITEA_ADMIN_PASSWORD" "$repo_url" || true)
+                echo "  Check status: $status"
                 case "$status" in
-                  200) return ;;
+                  200) echo "  Repo already exists, skipping"; return ;;
                   404) ;;
                   *) cat /tmp/response >&2; return 1 ;;
                 esac
+                echo "  Creating repo with payload: $create_payload"
+                create_url="http://gitea:3000/api/v1/user/repos"
+                echo "  POST $create_url"
                 status=$(curl --silent --show-error --output /tmp/response --write-out '%{http_code}' \
                   --user "$GITEA_ADMIN_USERNAME:$GITEA_ADMIN_PASSWORD" \
                   --header 'Content-Type: application/json' --request POST --data "$create_payload" \
-                  http://gitea:3000/api/v1/user/repos || true)
+                  "$create_url" || true)
+                echo "  Create status: $status"
+                echo "  Response body: $(cat /tmp/response)"
                 case "$status" in
                   201) ;;
-                  409) return ;;
-                  *) cat /tmp/response >&2; return 1 ;;
+                  409) echo "  Repo already exists (409), skipping"; return ;;
+                  *) return 1 ;;
                 esac
                 find "$source_dir" -type f | while IFS= read -r file; do
                   relative_path=${file#"$source_dir/"}
+                  echo "  Uploading: $relative_path"
                   content=$(base64 < "$file" | tr -d '\n')
                   printf '{"content":"%s","message":"Seed from %s"}' "$content" "$REPO_SEED_COMMIT" | \
                     curl --fail --silent --show-error --user "$GITEA_ADMIN_USERNAME:$GITEA_ADMIN_PASSWORD" \
                       --header 'Content-Type: application/json' --request PUT --data-binary @- \
-                      "$repo_url/contents/$relative_path" >/dev/null
+                      "$repo_url/contents/$relative_path"
                 done
               }
               {{- range .Values.repoSeed.repositories }}
