@@ -1,10 +1,13 @@
 imagePullPolicy: IfNotPresent
 
-namespaces:
-  gitea: gitea
-  datasphere: datasphere
-  lab: lab
-  labHelm: lab-helm
+cluster:
+  ingressDomain: labs.redhat.com
+
+lab:
+  namespace: lab
+
+labHelm:
+  namespace: lab-helm
 
 podSecurityContext:
   runAsNonRoot: true
@@ -16,6 +19,7 @@ containerSecurityContext:
     drop: [ALL]
 
 postgresql:
+  namespace: gitea
   image: docker.io/postgres:16.4-alpine
   auth:
     username: gitea
@@ -29,7 +33,8 @@ postgresql:
     limits: {cpu: 500m, memory: 512Mi}
 
 gitea:
-  image: docker.io/gitea/gitea:1.22.6-rootless
+  namespace: gitea
+  image: quay.io/rhpds/gitea:latest
   admin:
     username: gitea-admin
     password: "" # required
@@ -38,12 +43,18 @@ gitea:
     size: 5Gi
     storageClass: ""
   resources:
-    requests: {cpu: 100m, memory: 256Mi}
-    limits: {cpu: 500m, memory: 512Mi}
-  route:
-    host: ""
-
+    requests: {cpu: 200m, memory: 1Gi}
+    limits: {cpu: 500m, memory: 1Gi}
+  rootUrl: "https://gitea:3000"
+  appIni: |
+    [security]
+    INSTALL_LOCK = true
+    [session]
+    PROVIDER = file
+    SESSION_NAME = gitea
+    SESSION_SECURE = false
 datasphere:
+  namespace: datasphere
   theme: earth
   api:
     image: quay.io/rhpds/datasphere-api:1.4.5
