@@ -169,7 +169,7 @@ spec:
               protocol: TCP
           env:
             - name: GITEA__SERVER__ROOT_URL
-              value: {{ .Values.gitea.rootUrl | quote }}
+              value: {{ printf "https://%s" .Values.gitea.rootUrl | quote }}
             - name: GITEA__SECURITY__INSTALL_LOCK
               value: "true"
             - name: GITEA__DATABASE__DB_TYPE
@@ -469,18 +469,19 @@ spec:
         - name: gitea-admin-bootstrap
           image: {{ .Values.gitea.image | quote }}
           imagePullPolicy: {{ .Values.imagePullPolicy }}
+          workingDir: /home/gitea
           securityContext:
             {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           command: ["/bin/sh", "-ec"]
           args:
             - |
               attempts=0
-              until gitea migrate --config /etc/gitea/app.ini ; do
+              until ./gitea migrate --config /etc/gitea/app.ini ; do
                 attempts=$((attempts + 1))
                 [ "$attempts" -lt 60 ] || exit 1
                 sleep 2
               done
-              output=$(gitea admin user create --config /etc/gitea/app.ini --admin --username "$GITEA_ADMIN_USERNAME" --password "$GITEA_ADMIN_PASSWORD" --email "$GITEA_ADMIN_EMAIL" 2>&1) && exit 0
+              output=$(./gitea admin user create --config /etc/gitea/app.ini --admin --username "$GITEA_ADMIN_USERNAME" --password "$GITEA_ADMIN_PASSWORD" --email "$GITEA_ADMIN_EMAIL" 2>&1) && exit 0
               case "$output" in
                 *"already exists"*) exit 0 ;;
                 *) printf '%s\n' "$output" >&2; exit 1 ;;
