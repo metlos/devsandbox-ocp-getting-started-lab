@@ -476,16 +476,19 @@ spec:
           args:
             - |
               attempts=0
-              until ./gitea migrate --config /etc/gitea/app.ini ; do
+              until ./gitea migrate ; do
                 attempts=$((attempts + 1))
                 [ "$attempts" -lt 60 ] || exit 1
                 sleep 2
               done
-              output=$(./gitea admin user create --config /etc/gitea/app.ini --admin --username "$GITEA_ADMIN_USERNAME" --password "$GITEA_ADMIN_PASSWORD" --email "$GITEA_ADMIN_EMAIL" 2>&1) && exit 0
+              output=$(./gitea admin user create --admin --username "$GITEA_ADMIN_USERNAME" --password "$GITEA_ADMIN_PASSWORD" --email "$GITEA_ADMIN_EMAIL" 2>&1) && exit 0
               case "$output" in
                 *"already exists"*) exit 0 ;;
                 *) printf '%s\n' "$output" >&2; exit 1 ;;
               esac
+          volumeMounts:
+            - mountPath: /home/gitea/conf-import
+              name: gitea-config
           env:
             - name: GITEA_ADMIN_USERNAME
               value: {{ .Values.gitea.admin.username | quote }}
@@ -511,6 +514,14 @@ spec:
                 secretKeyRef:
                   name: gitea-postgresql-credentials
                   key: POSTGRESQL_PASSWORD
+      volumes:
+        - name: gitea-config
+          configMap:
+            name: gitea-config
+            defaultMode: 420
+            items:
+              - key: app.ini
+                path: app.ini
 ---
 apiVersion: batch/v1
 kind: Job
