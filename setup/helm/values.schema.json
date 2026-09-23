@@ -1,40 +1,61 @@
 {
   "properties": {
-    "namespaces": {
-      "type": "object",
-      "properties": {
-        "gitea": {
-          "type": "string",
-          "title": "gitea namespace",
-          "description": "Namespace name for Gitea deployment",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        },
-        "dataspehere": {
-          "type": "string",
-          "title": "datasphere namespace",
-          "description": "Namespace name for Datasphere application deployment",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        },
-        "lab": {
-          "type": "string",
-          "title": "lab namespace",
-          "description": "Namespace name for lab experimentation",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        },
-        "lab-helm": {
-          "type": "string",
-          "title": "lab helm namespace",
-          "description": "Namespace name for lab experimentation using Helm",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        }
+    "gitea.rootUrl": {
+      "type": "string",
+      "title": "gitea root url",
+      "description": "Root URL for Gitea deployment",
+      "x-interactive-labs": {
+        "kind": "root-url",
+        "routeName": "gitea",
+        "namespaceRef": "gitea.namespace"
+      }
+    },
+    "gitea.namespace": {
+      "type": "string",
+      "title": "gitea namespace",
+      "description": "Namespace name for Gitea deployment",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
+      }
+    },
+    "gitea.admin.password": {
+      "type": "string",
+      "title": "gitea admin password",
+      "description": "Password for Gitea admin user",
+      "x-interactive-labs": {
+        "kind": "generated-password"
+      }
+    },
+    "datasphere.namespace": {
+      "type": "string",
+      "title": "datasphere namespace",
+      "description": "Namespace name for Datasphere application deployment",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
+      }
+    },
+    "lab.namespace": {
+      "type": "string",
+      "title": "lab namespace",
+      "description": "Namespace name for lab experimentation",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
+      }
+    },
+    "lab-helm.namespace": {
+      "type": "string",
+      "title": "lab helm namespace",
+      "description": "Namespace name for lab experimentation using Helm",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
+      }
+    },
+    "postgresql.auth.password": {
+      "type": "string",
+      "title": "postgresql password",
+      "description": "Password for PostgreSQL database",
+      "x-interactive-labs": {
+        "kind": "generated-password"
       }
     }
   }

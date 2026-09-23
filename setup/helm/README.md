@@ -16,6 +16,8 @@ Create a private values file. Do not pass passwords with `--set` because shell h
 ```yaml
 # values-private.yaml
 gitea:
+  namespace: gitea-ns
+  rootUrl: gitea-gitea-ns.apps.example.com
   admin:
     password: replace-with-long-random-password
 postgresql:
