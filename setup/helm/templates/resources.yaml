@@ -262,7 +262,8 @@ metadata:
   namespace: {{ .Values.datasphere.namespace }}
 spec:
   selector:
-    app.kubernetes.io/name: datasphere-redis
+    app: datasphere
+    component: redis
   ports:
     - name: redis
       port: 6379
@@ -277,11 +278,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: datasphere-redis
+      app: datasphere
+      component: redis
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: datasphere-redis
+        app: datasphere
+        component: redis
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -315,7 +318,8 @@ metadata:
   namespace: {{ .Values.datasphere.namespace }}
 spec:
   selector:
-    app.kubernetes.io/name: datasphere-api
+    app: datasphere
+    component: api
   ports:
     - name: http
       port: 8080
@@ -330,11 +334,13 @@ spec:
   replicas: {{ .Values.datasphere.api.replicas }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: datasphere-api
+      app: datasphere
+      component: api
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: datasphere-api
+        app: datasphere
+        component: api
       annotations:
         checksum/config: {{ dict "theme" .Values.datasphere.theme "extraDatacenters" .Values.datasphere.api.extraDatacenters | toJson | sha256sum }}
     spec:
@@ -383,7 +389,8 @@ metadata:
   namespace: {{ .Values.datasphere.namespace }}
 spec:
   selector:
-    app.kubernetes.io/name: datasphere-ui
+    app: datasphere
+    component: ui
   ports:
     - name: http
       port: 8080
@@ -398,11 +405,13 @@ spec:
   replicas: {{ .Values.datasphere.ui.replicas }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: datasphere-ui
+      app: datasphere
+      component: ui
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: datasphere-ui
+        app: datasphere
+        component: ui
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
