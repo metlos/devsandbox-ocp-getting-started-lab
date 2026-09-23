@@ -19,10 +19,10 @@ Login successful.
 
 You have access to the following projects and can switch between them with 'oc project <projectname>':
 
-  * {user}-datasphere
+  * {datasphere-namespace}
     {user}-gitops
 
-Using project "{user}-datasphere".
+Using project "{datasphere-namespace}".
 ----
 ====
 

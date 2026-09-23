@@ -9,6 +9,6 @@ the map update in real time. The application runs as three components:
 * *datasphere-api* — a Python FastAPI backend that tracks datacenter state and load
 * *datasphere-redis* — a Redis instance that keeps state consistent across API replicas
 
-A pre-deployed DataSphere instance is already running in your `{user}-datasphere` project.
+A pre-deployed DataSphere instance is already running in your `{datasphere-namespace}` project.
 Open it now to see what you'll be deploying and managing in this lab.
 

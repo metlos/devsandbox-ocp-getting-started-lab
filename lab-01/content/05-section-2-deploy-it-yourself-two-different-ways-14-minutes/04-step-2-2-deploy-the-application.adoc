@@ -33,7 +33,7 @@ The output tells you the app isn't externally accessible yet -- you'll fix that 
 
 TIP: If you see `imagestreams.image.openshift.io "datasphere-ui" already exists`, the
 ImageStream was already created from a previous attempt. Run
-`oc delete all --selector app=datasphere-ui -n {user}-lab` to clean up, then re-run the
+`oc delete all --selector app=datasphere-ui -n {lab-namespace}` to clean up, then re-run the
 `oc new-app` command above.
 
 Wait for the pod to come up:
@@ -82,7 +82,7 @@ Wait for the pod ring in *Topology* to turn solid blue before continuing.
 
 TIP: If you see an error that a resource already exists, a previous attempt left
 resources behind. Switch to the *Terminal* tab and run
-`oc delete all --selector app=datasphere-ui -n {user}-lab` to clean up, then try again.
+`oc delete all --selector app=datasphere-ui -n {lab-namespace}` to clean up, then try again.
 ====
 
 NOTE: This same rollout process happens every time you deploy a new version. OpenShift creates
