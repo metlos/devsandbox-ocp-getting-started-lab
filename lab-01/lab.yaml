@@ -2,10 +2,10 @@ apiVersion: v1alpha1
 kind: Lab
 metadata:
   name: ocp4-getting-started-module-1
-  displayName: OpenShift 4 Getting Started Module 1
+  displayName: Getting Started with OpenShift - 3 Ways to Deploy the App
   description: |
-    This is a description of the first module of the getting started
-    interactive lab. It is *Asciidoc*.
+    Deploy DataSphere three ways: using the OpenShift CLI (oc), the web console, and Helm. 
+    Compare each approach and understand when to use each one in a real project.
 spec:
   attributes:
     module: "1"
