@@ -43,7 +43,7 @@ Click *datasphere-ui* to open the Service detail page.
 image::../../../assets/images/console-guide/lab-01-deploy-the-app/05-service-ui-details.png[Service detail page for datasphere-ui showing pod selector, cluster IP, hostname, and port mapping]
 
 Notice the *Pod selector* field: `app=datasphere, component=ui`. The *Hostname* shows the
-internal DNS name -- `datasphere-ui.{user}-datasphere.svc.cluster.local` -- that other
+internal DNS name -- `datasphere-ui.{datasphere-namespace}.svc.cluster.local` -- that other
 applications inside the cluster use to reach this Service by name.
 ====
 

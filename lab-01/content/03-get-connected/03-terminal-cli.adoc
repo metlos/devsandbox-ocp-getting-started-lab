@@ -24,11 +24,11 @@ Login successful.
 
 You have access to the following projects and can switch between them with 'oc project <projectname>':
 
-  * {user}-datasphere
-    {user}-lab
-    {user}-lab-helm
+  * {datasphere-namespace}
+    {lab-namespace}
+    {lab-namespace}-helm
 
-Using project "{user}-datasphere".
+Using project "{datasphere-namespace}".
 Welcome! See 'oc help' to get started.
 ----
 ====

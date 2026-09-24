@@ -9,7 +9,7 @@ use your lab credentials (`{user}` / `{password}`). After logging in, your repos
 listed on the dashboard -- click *datasphere-api*.
 
 You can also open the repository directly in a new tab:
-link:{gitea_url}/{user}/datasphere-api[{gitea_url}/{user}/datasphere-api, window=_blank]
+link:{gitea-root-url}/{user}/datasphere-api[{gitea-root-url}/{user}/datasphere-api, window=_blank]
 
 You can skip this step -- the next command pulls the source directly from Gitea.
 

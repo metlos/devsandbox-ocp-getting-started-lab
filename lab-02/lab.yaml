@@ -2,10 +2,11 @@ apiVersion: v1alpha1
 kind: Lab
 metadata:
   name: ocp4-getting-started-module-2
-  displayName: OpenShift 4 Getting Started Module 2
+  displayName: Getting Started with OpenShift - Apps That Never Go Down
   description: |
-    This is a description of the second module of the getting started
-    interactive lab. It is *Asciidoc*.
+    Add production resilience to DataSphere: configure liveness and readiness probes, 
+    set up Horizontal Pod Autoscaler (HPA), and define resource limits. 
+    Trigger failures and watch OpenShift recover automatically.
 spec:
   attributes:
     module: "2"

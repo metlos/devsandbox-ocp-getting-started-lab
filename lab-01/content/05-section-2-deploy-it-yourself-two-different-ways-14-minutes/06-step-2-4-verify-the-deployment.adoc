@@ -15,7 +15,7 @@ oc get route datasphere-ui
 [subs="attributes+"]
 ----
 NAME            HOST/PORT                                                          PATH   SERVICES        PORT       TERMINATION   WILDCARD
-datasphere-ui   datasphere-ui-{user}-lab.{openshift_cluster_ingress_domain}              datasphere-ui   8080-tcp   edge          None
+datasphere-ui   datasphere-ui-{lab-namespace}.{openshift_cluster_ingress_domain}              datasphere-ui   8080-tcp   edge          None
 ----
 =====
 

@@ -2,10 +2,10 @@ apiVersion: v1alpha1
 kind: Lab
 metadata:
   name: ocp4-getting-started-module-3
-  displayName: OpenShift 4 Getting Started Module 3
+  displayName: Getting Started with OpenShift - Git Is Your Source of Truth
   description: |
-    This is a description of the third module of the getting started
-    interactive lab. It is *Asciidoc*.
+    Connect DataSphere to ArgoCD. Push a change to your personal Gitea repository and 
+    watch OpenShift reconcile the cluster to match — GitOps in practice, not just theory.
 spec:
   attributes:
     module: "3"

@@ -22,7 +22,7 @@ oc describe pod -l component=ui
 [subs="attributes+"]
 ----
 Name:         datasphere-ui-597f67c7bc-xxxxx
-Namespace:    {user}-datasphere
+Namespace:    {datasphere-namespace}
 Labels:       app=datasphere
               component=ui
 Containers:
