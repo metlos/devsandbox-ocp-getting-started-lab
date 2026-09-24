@@ -19,7 +19,7 @@ Install DataSphere with resilience features disabled:
 
 [source,role="execute",subs="attributes+"]
 ----
-helm install datasphere {gitea_url}/api/packages/gitea-admin/helm/datasphere-{datasphere_helm_version}.tgz --set api.hpa.enabled=false --set api.probes.enabled=false --set api.resources.enabled=false
+helm install datasphere {gitea-root-url}/api/packages/gitea-admin/helm/datasphere-{datasphere_helm_version}.tgz --set api.hpa.enabled=false --set api.probes.enabled=false --set api.resources.enabled=false
 ----
 
 [%collapsible]
@@ -76,7 +76,7 @@ include::../../../../../partials/datasphere-lab-manifests.yaml[]
 +
 . Click *Create*.
 
-// SCREENSHOT NEEDED: Import YAML editor (⊕ button) in {user}-lab with DataSphere manifests pasted in, Create button visible at bottom
+// SCREENSHOT NEEDED: Import YAML editor (⊕ button) in {lab-namespace} with DataSphere manifests pasted in, Create button visible at bottom
 image::../../../../../assets/images/console-guide/lab-02-apps-never-down/12-import-yaml-datasphere.png[Import YAML editor with DataSphere manifests pasted in and Create button visible]
 
 When all resources show *Created* status:

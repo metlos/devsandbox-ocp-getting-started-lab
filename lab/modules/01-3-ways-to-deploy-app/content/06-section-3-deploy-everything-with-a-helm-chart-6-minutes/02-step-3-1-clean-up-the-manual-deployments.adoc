@@ -15,14 +15,14 @@ oc delete all --selector app=datasphere-api
 ====
 [subs="attributes+"]
 ----
-service "datasphere-ui" deleted from {user}-lab namespace
-deployment.apps "datasphere-ui" deleted from {user}-lab namespace
-imagestream.image.openshift.io "datasphere-ui" deleted from {user}-lab namespace
-route.route.openshift.io "datasphere-ui" deleted from {user}-lab namespace
-service "datasphere-api" deleted from {user}-lab namespace
-deployment.apps "datasphere-api" deleted from {user}-lab namespace
-buildconfig.build.openshift.io "datasphere-api" deleted from {user}-lab namespace
-imagestream.image.openshift.io "datasphere-api" deleted from {user}-lab namespace
+service "datasphere-ui" deleted from {lab-namespace} namespace
+deployment.apps "datasphere-ui" deleted from {lab-namespace} namespace
+imagestream.image.openshift.io "datasphere-ui" deleted from {lab-namespace} namespace
+route.route.openshift.io "datasphere-ui" deleted from {lab-namespace} namespace
+service "datasphere-api" deleted from {lab-namespace} namespace
+deployment.apps "datasphere-api" deleted from {lab-namespace} namespace
+buildconfig.build.openshift.io "datasphere-api" deleted from {lab-namespace} namespace
+imagestream.image.openshift.io "datasphere-api" deleted from {lab-namespace} namespace
 ----
 ====
 
@@ -38,7 +38,7 @@ oc get all
 ====
 [subs="attributes+"]
 ----
-No resources found in {user}-lab namespace.
+No resources found in {lab-namespace} namespace.
 ----
 ====
 

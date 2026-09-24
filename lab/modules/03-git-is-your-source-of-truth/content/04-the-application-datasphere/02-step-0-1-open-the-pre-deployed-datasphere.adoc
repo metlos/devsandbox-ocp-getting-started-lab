@@ -6,7 +6,7 @@
 ====
 [source,role="execute",subs="attributes+"]
 ----
-oc get route datasphere-ui -n {user}-datasphere
+oc get route datasphere-ui -n {datasphere-namespace}
 ----
 
 Copy the URL from the `HOST` column and open it in a new browser tab.
@@ -15,11 +15,11 @@ Copy the URL from the `HOST` column and open it in a new browser tab.
 [%collapsible]
 .Using the Web Console
 ====
-In the OpenShift console, click *`{user}-datasphere`* in the project list.
+In the OpenShift console, click *`{datasphere-namespace}`* in the project list.
 In the left navigation, expand *Networking* and click *Routes*.
 Click the URL in the *Location* column for `datasphere-ui`.
 
-// SCREENSHOT NEEDED: Networking → Routes in {user}-datasphere showing the datasphere-ui route with its URL in the Location column
+// SCREENSHOT NEEDED: Networking → Routes in {datasphere-namespace} showing the datasphere-ui route with its URL in the Location column
 image::../../../../../assets/images/lab-03-routes-datasphere-ui.png[Routes list in user-datasphere showing datasphere-ui route and URL]
 ====
 

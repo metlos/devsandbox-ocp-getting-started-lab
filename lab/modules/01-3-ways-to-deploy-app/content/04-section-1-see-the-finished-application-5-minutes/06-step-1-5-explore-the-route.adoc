@@ -18,7 +18,7 @@ oc describe route datasphere-ui
 [subs="attributes+"]
 ----
 Name:            datasphere-ui
-Host:            datasphere-ui-{user}-datasphere.{openshift_cluster_ingress_domain}
+Host:            datasphere-ui-{datasphere-namespace}.{openshift_cluster_ingress_domain}
 TLS Termination: edge
 Insecure Policy: Redirect
 Service:         datasphere-ui

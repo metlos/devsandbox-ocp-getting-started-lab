@@ -38,7 +38,7 @@ NAME                                                 REFERENCE                  
 horizontalpodautoscaler.autoscaling/datasphere-api   Deployment/datasphere-api   cpu: 16%/50%   1         5         1          5m
 
 NAME                                     HOST/PORT
-route.route.openshift.io/datasphere-ui   datasphere-ui-{user}-datasphere.apps.{openshift_cluster_ingress_domain}
+route.route.openshift.io/datasphere-ui   datasphere-ui-{datasphere-namespace}.apps.{openshift_cluster_ingress_domain}
 ----
 =====
 
