@@ -27,7 +27,7 @@ Labels:       app=datasphere
               component=ui
 Containers:
   ui:
-    Image:    {datasphere_ui_image}
+    Image:    {datasphere-ui-image}
     Port:     8080/TCP
     State:    Running
     Ready:    True

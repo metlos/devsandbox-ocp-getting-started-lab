@@ -7,7 +7,7 @@ Log in with these credentials:
 
 * *Username*: `{user}`
 * *Password*: `{password}`
-* *Console URL*: {openshift_console_url}
+* *Console URL*: {openshift-console-url}
 
 TIP: If the left navigation panel is not visible after logging in, click the *≡*
 icon in the top-left corner to expand it.
