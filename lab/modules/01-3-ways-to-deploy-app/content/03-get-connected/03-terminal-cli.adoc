@@ -1,10 +1,11 @@
 = Terminal (CLI)
 :source-highlighter: highlightjs
 
-Click the *Terminal* tab on the right side of this lab interface. The `oc` CLI is pre-installed
-and ready to use.
+Many of the commands are directly runnable from within the lab interface. If you want
+to run them yourself and experiment, you can copy the commands and run them in your favorite
+shell or in the Web Terminal interface (if available).
 
-Log in to the cluster. When prompted about insecure connections, type `y`:
+To log into the cluster in your CLI, run the following command:
 
 [source,role="execute",subs="attributes+"]
 ----
