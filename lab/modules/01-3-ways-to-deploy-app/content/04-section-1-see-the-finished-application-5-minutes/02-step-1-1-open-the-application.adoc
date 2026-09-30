@@ -1,6 +1,8 @@
 = Step 1.1: Open the application
 :source-highlighter: highlightjs
 
+The DataSphere UI should be accessible on this https://datasphere-ui-{datasphere-namespace}.{openshift_api_url}[URL].
+
 [%collapsible]
 .Using the Terminal (CLI)
 ====
