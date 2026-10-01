@@ -34,6 +34,16 @@
         "kind": "namespace-name"
       }
     },
+    "datasphere.rootUrl": {
+      "type": "string",
+      "title": "datasphere root url",
+      "description": "Root URL for DataSphere deployment",
+      "x-interactive-labs": {
+        "kind": "root-url",
+        "routeName": "datasphere-ui",
+        "namespaceRef": "datasphere.namespace"
+      }
+    },
     "lab.namespace": {
       "type": "string",
       "title": "lab namespace",
