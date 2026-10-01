@@ -8,7 +8,7 @@ Log in to the cluster. When prompted about insecure connections, type `y`:
 
 [source,role="execute",subs="attributes+"]
 ----
-oc login {openshift_api_url} --username {user} --password {password}
+oc login {openshift-api-url} --username {user} --password {password}
 ----
 
 [%collapsible]

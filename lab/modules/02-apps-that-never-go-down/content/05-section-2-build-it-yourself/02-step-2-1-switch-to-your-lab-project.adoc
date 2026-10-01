@@ -14,7 +14,7 @@ oc project {lab-namespace}
 =====
 [subs="attributes+"]
 ----
-Now using project "{lab-namespace}" on server "{openshift_api_url}".
+Now using project "{lab-namespace}" on server "{openshift-api-url}".
 ----
 =====
 ====

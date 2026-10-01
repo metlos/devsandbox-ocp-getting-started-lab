@@ -1,7 +1,7 @@
 = Step 3.5: Verify on the DataSphere map
 :source-highlighter: highlightjs
 
-Reload the link:https://datasphere-ui-{user}-gitops.{openshift_cluster_ingress_domain}/[DataSphere app, window=_blank] you opened in Step 2.4. A new hub dot appears in East Africa.
+Reload the link:https://datasphere-ui-{user}-gitops.{openshift-cluster-ingress-domain}/[DataSphere app, window=_blank] you opened in Step 2.4. A new hub dot appears in East Africa.
 Backbone arcs connect Nairobi to all other major hubs globally.
 
 // SCREENSHOT NEEDED: DataSphere app showing the MEA Hub (Nairobi) as a new major hub in East Africa with backbone arcs connecting it to other major hubs

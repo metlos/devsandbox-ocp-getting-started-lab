@@ -8,14 +8,14 @@ Deploy the DataSphere UI from its container image:
 
 [source,role="execute",subs="attributes+"]
 ----
-oc new-app {datasphere_ui_image} --name=datasphere-ui
+oc new-app {datasphere-ui-image} --name=datasphere-ui
 ----
 
 [%collapsible]
 .Expected output
 =====
 ----
---> Found container image ... ({datasphere_ui_image})
+--> Found container image ... ({datasphere-ui-image})
     ...
 --> Creating resources ...
     imagestream.image.openshift.io "datasphere-ui" created
@@ -59,14 +59,14 @@ In the left navigation, click *+Add*, then click *Container images*.
 
 Fill in the form:
 
-. In the *Image name from external registry* field, enter: `{datasphere_ui_image}`
+. In the *Image name from external registry* field, enter: `{datasphere-ui-image}`
 . Set *Name* to `datasphere-ui`.
 . In the *Application Name* field, change the value to `datasphere-ui` (the form
   may auto-fill this as `datasphere-ui-app` -- remove the `-app` suffix).
   This groups components together in the Topology view -- naming it clearly
   will matter when you add the API in the next step.
 
-// SCREENSHOT NEEDED: Deploy Image form showing {datasphere_ui_image} (1.4.5) in the image field, Name=datasphere-ui, Application Name=datasphere-ui filled in
+// SCREENSHOT NEEDED: Deploy Image form showing {datasphere-ui-image} (1.4.5) in the image field, Name=datasphere-ui, Application Name=datasphere-ui filled in
 image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/09-deploy-image-form.png[Deploy Image form with datasphere-ui image name entered and Application Name set to datasphere-ui]
 
 . Scroll down to *Advanced options*. Confirm *Target port* is *8080*, then check the

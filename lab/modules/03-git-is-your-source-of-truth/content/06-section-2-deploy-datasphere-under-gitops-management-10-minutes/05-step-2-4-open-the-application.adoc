@@ -3,7 +3,7 @@
 
 Open the DataSphere app that ArgoCD just deployed:
 
-link:https://datasphere-ui-{user}-gitops.{openshift_cluster_ingress_domain}/[https://datasphere-ui-{user}-gitops.{openshift_cluster_ingress_domain}/, window=_blank]
+link:https://datasphere-ui-{user}-gitops.{openshift-cluster-ingress-domain}/[https://datasphere-ui-{user}-gitops.{openshift-cluster-ingress-domain}/, window=_blank]
 
 This looks identical to the DataSphere you opened in Step 0.1 -- and that's the point.
 It's the same application, but this is a *separate, independent deployment* in `{user}-gitops`,
