@@ -1,6 +1,7 @@
 = Step 1.2: See what's running
 :source-highlighter: highlightjs
 
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, expand *console:qs-nav-workloads[Workloads]* and click *resource:v1/Pods[Pods]*.
@@ -17,6 +18,7 @@ state consistent across pod restarts and across multiple API replicas. You won't
 with Redis directly in this lab -- it runs in the background as a supporting service.
 ****
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -24,6 +26,7 @@ with Redis directly in this lab -- it runs in the background as a supporting ser
 oc get all
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 [subs="attributes+"]

@@ -1,7 +1,7 @@
 = Step 1.1: Open the application
 :source-highlighter: highlightjs
 
-
+[%collapsible%open]
 .Using the Web Console
 ====
 In the Core Platform view, click console:qs-nav-home[Home], resource:project.openshift.io/v1/Project[Projects,scope=cluster] and finally, 
@@ -27,6 +27,7 @@ image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/01c-data
 TIP: Try to keep the lab interface and the DataSphere application visible side by side.
 You'll be switching between them throughout the lab.
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute",subs="attributes+"]
