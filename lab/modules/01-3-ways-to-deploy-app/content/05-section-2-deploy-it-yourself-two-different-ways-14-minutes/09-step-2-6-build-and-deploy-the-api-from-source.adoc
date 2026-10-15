@@ -24,8 +24,8 @@ image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/10-impor
 
 To watch the build progress:
 
-. In the left navigation, click console:qs-nav-builds[*Builds*].
-. Click the *datasphere-api* BuildConfig that appears.
+. In the left navigation, click console:qs-nav-builds[*Builds*], resource:build.openshift.io/v1/BuildConfig[BuildConfigs].
+. Click the resource:build.openshift.io/v1/BuildConfig[*datasphere-api*,name=datasphere-api,namespace={gitea-namespace}] BuildConfig that appears.
 . Select the *Builds* tab, click the build name, then click *Logs*.
 
 // SCREENSHOT NEEDED: Build Logs page for datasphere-api-1 showing the S2I build output with pip install lines and "Push successful" at the end
