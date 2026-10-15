@@ -4,7 +4,7 @@
 The API only needs to be reachable from within the cluster, not from the internet.
 To see this, compare the Services list to the Routes list.
 
-[%collapsible]
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, click *resource:v1/Service[Services,namespace={datasphere-namespace}]*. The list shows three Services:
@@ -21,7 +21,7 @@ by Service name, but only `datasphere-ui` has a Route for external access.
 The UI talks to the API by Service name -- `datasphere-api` -- and OpenShift's internal DNS
 resolves it automatically.
 
-[%collapsible]
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Compare the Services to the Routes:
