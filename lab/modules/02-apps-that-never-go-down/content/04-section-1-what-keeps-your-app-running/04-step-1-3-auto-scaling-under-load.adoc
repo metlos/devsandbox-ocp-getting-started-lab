@@ -26,7 +26,8 @@ image::../../../../../assets/images/console-guide/lab-02-apps-never-down/09-hpa-
 
 This page shows *Current replicas* and *Desired replicas* in real time.
 
-Open the `datasphere-api` Deployment (*Workloads* → *Deployments* → *datasphere-api*) and
+Open the `datasphere-api` Deployment (console:qs-nav-workloads[*Workloads*] → resource:apps/v1/Deployment[*Deployments*] → 
+resource:apps/v1/Deployment[*datasphere-api*,name=datasphere-api,namespace={datasphere-namespace}]) and
 click the *Metrics* tab for a live CPU graph.
 
 // SCREENSHOT NEEDED: datasphere-api Deployment → Metrics tab showing CPU usage graph (capture while load is being applied so the spike is visible)
