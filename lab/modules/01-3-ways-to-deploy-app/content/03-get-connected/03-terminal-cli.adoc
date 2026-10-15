@@ -16,7 +16,7 @@ NOTE: If `oc` is not already installed on your machine, you can download it dire
 click the *console:qs-masthead-help[?]* icon in the top-right corner, select link:{openshift-console-url}/command-line-tools[*Command Line Tools*], and download the version of `oc` 
 that matches your operating system.
 
-
+[%collapsible]
 .Expected output
 ====
 [subs="attributes+"]
