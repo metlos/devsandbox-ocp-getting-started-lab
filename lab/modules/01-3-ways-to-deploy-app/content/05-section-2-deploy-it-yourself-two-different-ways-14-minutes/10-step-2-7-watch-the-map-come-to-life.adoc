@@ -1,6 +1,7 @@
 = Step 2.7: Watch the map come to life
 :source-highlighter: highlightjs
 
+[%collapsible%open]
 .Using the Web Console
 ====
 In console:qs-nav-topology[*Topology*], both `datasphere-ui` and `datasphere-api` now appear with solid blue rings.
@@ -13,14 +14,7 @@ node to open the application.
 image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/12-topology-s2i-api-deployed.png[Topology view showing datasphere-ui and datasphere-api both deployed with the open URL icon on datasphere-ui]
 ====
 
-The map is now populated with datacenter sites. You didn't reconfigure the UI. You didn't update
-any hostnames or IP addresses. The moment `datasphere-api` came online as a Service in this
-project, the UI found it automatically.
-
-This is OpenShift's internal DNS in practice: the UI is configured to forward `/api/` requests
-to `datasphere-api:8080`. OpenShift resolves that name to the Service, which routes to the pod.
-Add a backend, the frontend connects to it. That's it.
-
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -30,3 +24,12 @@ oc get route datasphere-ui
 
 Copy the URL from the `HOST/PORT` column and open it in your browser.
 ====
+
+The map is now populated with datacenter sites. You didn't reconfigure the UI. You didn't update
+any hostnames or IP addresses. The moment `datasphere-api` came online as a Service in this
+project, the UI found it automatically.
+
+This is OpenShift's internal DNS in practice: the UI is configured to forward `/api/` requests
+to `datasphere-api:8080`. OpenShift resolves that name to the Service, which routes to the pod.
+Add a backend, the frontend connects to it. That's it.
+

@@ -1,7 +1,7 @@
 = Step 2.4: Verify the deployment
 :source-highlighter: highlightjs
 
-
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, expand *console:qs-nav-workloads[Workloads]*, select *console:qs-nav-topology[Topology]*, click the *open URL* icon near the Route 'datasphere-ui' location
@@ -16,6 +16,7 @@ That's not a bug. The UI is running exactly as it should: it's already calling o
 `datasphere-api:8080`, looking for the backend. But there's no pod answering that address yet.
 You've deployed the frontend. The backend doesn't exist in this project.
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -23,6 +24,7 @@ You've deployed the frontend. The backend doesn't exist in this project.
 oc get route datasphere-ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 [subs="attributes+"]

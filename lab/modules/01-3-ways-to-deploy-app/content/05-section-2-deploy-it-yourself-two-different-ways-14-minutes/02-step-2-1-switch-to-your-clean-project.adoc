@@ -1,6 +1,7 @@
 = Step 2.1: Switch to your clean project
 :source-highlighter: highlightjs
 
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, expand *console:qs-nav-home[Home]*, select *resource:project.openshift.io/v1/Project[Projects]*,
@@ -12,6 +13,7 @@ image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/08b-deve
 
 This project is empty -- a clean workspace for you to build in.
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute",subs="attributes+"]

@@ -10,6 +10,7 @@ oc delete all --selector app=datasphere-ui -n {lab-namespace}
 oc delete all --selector app=datasphere-api -n {lab-namespace}
 ----
 
+[%collapsible%open]
 .Expected output
 ====
 [subs="attributes+"]
@@ -32,6 +33,7 @@ Verify the project is clean:
 oc get all -n {lab-namespace}
 ----
 
+[%collapsible%open]
 .Expected output
 ====
 [subs="attributes+"]

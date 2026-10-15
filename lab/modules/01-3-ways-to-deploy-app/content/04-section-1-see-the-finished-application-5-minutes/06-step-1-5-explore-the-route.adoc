@@ -4,6 +4,7 @@
 A *Route* exposes a Service to traffic from outside the cluster. It provides a public hostname
 and handles TLS termination automatically.
 
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, open the *console:qs-nav-networking[Networking]* menu and click *resource:route.openshift.io/v1/Route[Routes]*.
@@ -19,6 +20,7 @@ The *Location* field is the public URL. OpenShift generates the hostname and man
 automatically -- you only need to configure further if you want to customize your TLS strategy.
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -26,7 +28,7 @@ automatically -- you only need to configure further if you want to customize you
 oc describe route datasphere-ui
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output (key fields)
 =====
 [subs="attributes+"]

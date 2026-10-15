@@ -1,8 +1,7 @@
 = Step 2.2: Deploy the application
 :source-highlighter: highlightjs
 
-
-[%collapsible]
+[%collapsible%open]
 .Using the Web Console
 ====
 In the top navigation of the project, select the *Workloads* tab, then click on the *Add page* link.
@@ -40,6 +39,7 @@ NOTE: This same rollout process happens every time you deploy a new version. Ope
 new pods first, waits for them to be healthy, then scales down the old ones -- no downtime,
 no manual coordination.
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Deploy the DataSphere UI from its container image:
@@ -49,6 +49,7 @@ Deploy the DataSphere UI from its container image:
 oc new-app {datasphere-ui-image} --name=datasphere-ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -80,6 +81,7 @@ Wait for the pod to come up:
 oc rollout status deployment/datasphere-ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----

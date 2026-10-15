@@ -12,6 +12,7 @@ yourself and see exactly what each piece does.
 NOTE: In production you'd ship with all resilience features enabled from day one. We're
 stripping them here so you can build them up step by step and understand what each one provides.
 
+[%collapsible%open]
 .Using the Web Console
 ====
 . In the top navigation bar, click console:qs-masthead-import[*Quick create*] and select *Import YAML* to open the YAML editor.
@@ -39,6 +40,7 @@ NOTE: The YAML manifest deliberately excludes the auto-scaler, health probes, an
 requests. You will configure each one in the steps below.
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Install DataSphere with resilience features disabled:
@@ -48,6 +50,7 @@ Install DataSphere with resilience features disabled:
 helm install datasphere {gitea-rootUrl}/api/packages/gitea-admin/helm/datasphere-{datasphere-helm-version}.tgz --set api.hpa.enabled=false --set api.probes.enabled=false --set api.resources.enabled=false
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -66,6 +69,7 @@ Wait until all pods are ready:
 watch oc get pods
 ----
 
+[%collapsible%open]
 .Expected output (when ready)
 =====
 [subs="attributes+"]

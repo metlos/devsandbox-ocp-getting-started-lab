@@ -4,6 +4,7 @@
 NOTE: If you used the *Web Console* path above, the Route was created as part of xref:04-step-2-2-deploy-the-application.adoc[Step 2.2] --
 skip this step and go to xref:06-step-2-4-verify-the-deployment.adoc[Step 2.4].
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -11,6 +12,7 @@ skip this step and go to xref:06-step-2-4-verify-the-deployment.adoc[Step 2.4].
 oc create route edge --service=datasphere-ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----

@@ -1,6 +1,7 @@
 = Step 2.6: Build and deploy the API from source
 :source-highlighter: highlightjs
 
+[%collapsible%open]
 .Using the Web Console
 ====
 Click the *console:qs-masthead-import[Quick create]* button in the top right menu, then select *Import from Git* (you may need to reduce this drawer to reveal the top menu)
@@ -36,6 +37,7 @@ When the build shows *Complete*, the Deployment starts automatically.
 That entire build ran inside the cluster: no Docker installed locally, no CI/CD pipeline
 configured, no external registry account needed.
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 The `python~` prefix tells OpenShift two things: use the Python builder image, and build from
@@ -47,6 +49,7 @@ installs dependencies, and packages everything into a container image -- all ins
 oc new-app python~{gitea-rootUrl}/{gitea-admin-username}/datasphere-api --name=datasphere-api
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -72,6 +75,7 @@ Watch the build run inside the cluster:
 oc logs -f buildconfig/datasphere-api
 ----
 
+[%collapsible%open]
 .Expected output (truncated)
 =====
 ----
@@ -94,6 +98,7 @@ Wait for the deployment:
 oc rollout status deployment/datasphere-api
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----

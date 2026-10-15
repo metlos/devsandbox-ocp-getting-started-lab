@@ -10,6 +10,7 @@ Two probe types work together here:
 * *Liveness probe*: asks "is this container alive?" -- if it fails enough times, OpenShift restarts it
 * *Readiness probe*: asks "can this container handle traffic right now?" -- if it fails, the Service stops sending requests to that pod
 
+[%collapsible%open]
 .Using the Web Console
 ====
 . On the resource:apps/v1/Deployment[*datasphere-api*,name=datasphere-api,namespace={lab-namespace}] Deployment detail page, click *Actions* → *Add Health Checks*.
@@ -44,6 +45,7 @@ image::../../../../../assets/images/console-guide/lab-02-apps-never-down/17-prob
 . Click *Add*.
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Add a liveness probe:
@@ -53,6 +55,7 @@ Add a liveness probe:
 oc set probe deployment/datasphere-api --liveness --get-url=http://:8080/health --initial-delay-seconds=10 --period-seconds=10 --failure-threshold=3
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -67,6 +70,7 @@ Add a readiness probe:
 oc set probe deployment/datasphere-api --readiness --get-url=http://:8080/health --initial-delay-seconds=5 --period-seconds=5
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -81,6 +85,7 @@ Verify both are configured:
 oc describe deployment datasphere-api | grep -E "Liveness:|Readiness:"
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----

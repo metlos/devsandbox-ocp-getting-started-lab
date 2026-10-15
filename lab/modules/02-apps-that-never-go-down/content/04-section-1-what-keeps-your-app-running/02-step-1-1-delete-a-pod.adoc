@@ -4,6 +4,7 @@
 A ReplicaSet is the controller that ensures a specified number of pod replicas are running
 at any time. When a pod is deleted or crashes, the ReplicaSet creates a replacement immediately.
 
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, click console:qs-nav-workloads[*Workloads*] → resource:v1/Pod[*Pods*].
@@ -27,9 +28,7 @@ a replacement in *ContainerCreating*, then *Running*.
 image::../../../../../assets/images/console-guide/lab-02-apps-never-down/04-pod-terminating-new-creating.png[Pods list showing old pod Terminating and new pod already starting]
 ====
 
-OpenShift replaced the pod automatically through the ReplicaSet controller. With only 1
-replica, any pod failure causes a brief outage until the replacement starts.
-
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Check how many UI pods are running:
@@ -39,6 +38,7 @@ Check how many UI pods are running:
 oc get pods --selector component=ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -54,6 +54,7 @@ datasphere-ui-7c9d8e6f4-m3n7p   1/1     Running   0          10m
 oc delete pod $(oc get pod --selector component=ui -o jsonpath='{.items[0].metadata.name}')
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -68,6 +69,7 @@ Check the pods again:
 oc get pods --selector component=ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -79,3 +81,7 @@ datasphere-ui-7c9d8e6f4-pq8x2   1/1     Running   0          8s
 A new pod is already running. The ReplicaSet detected the missing pod and created a
 replacement automatically.
 ====
+
+OpenShift replaced the pod automatically through the ReplicaSet controller. With only 1
+replica, any pod failure causes a brief outage until the replacement starts.
+

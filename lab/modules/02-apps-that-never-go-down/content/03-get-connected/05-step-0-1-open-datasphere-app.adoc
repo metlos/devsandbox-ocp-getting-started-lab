@@ -1,6 +1,7 @@
 = Step 0.1: Open the DataSphere app
 :source-highlighter: highlightjs
 
+[%collapsible%open]
 .Using the Web Console
 ====
 Make sure you are in the *`{datasphere-namespace}`* project. If you're not there, click the project name at the top of the
@@ -14,11 +15,7 @@ image::../../../../../assets/images/console-guide/lab-02-apps-never-down/01-rout
 Click the URL in the *Location* column to open the DataSphere app in a new browser tab.
 ====
 
-You should see the DataSphere map with datacenter sites displayed across the globe.
-
-NOTE: If you're already familiar with ReplicaSets and manual scaling, skip ahead to
-xref:../04-section-1-what-keeps-your-app-running/04-step-1-3-auto-scaling-under-load.adoc[] to see auto-scaling in action.
-
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Make sure you're in the `{datasphere-namespace}` project:
@@ -28,6 +25,7 @@ Make sure you're in the `{datasphere-namespace}` project:
 oc project {datasphere-namespace}
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 [subs="attributes+"]
@@ -43,6 +41,7 @@ Get the application URL:
 oc get route datasphere-ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 [subs="attributes+"]
@@ -54,3 +53,9 @@ datasphere-ui   datasphere-ui-{datasphere-namespace}.{openshift-cluster-ingress-
 
 Copy the URL from the `HOST/PORT` column and open it in a new browser tab.
 ====
+
+You should see the DataSphere map with datacenter sites displayed across the globe.
+
+NOTE: If you're already familiar with ReplicaSets and manual scaling, skip ahead to
+xref:../04-section-1-what-keeps-your-app-running/04-step-1-3-auto-scaling-under-load.adoc[] to see auto-scaling in action.
+

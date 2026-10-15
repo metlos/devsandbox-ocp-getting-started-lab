@@ -3,6 +3,15 @@
 
 With 3 replicas, losing 1 pod leaves 2 still serving traffic -- no outage.
 
+[NOTE]
+====
+With multiple replicas, the Service load-balances across all pods with matching labels.
+Losing 1 pod out of 3 means the other 2 handle requests without interruption. This is
+why production workloads always run more than 1 replica.
+====
+
+
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, click console:qs-nav-workloads[*Workloads*] → resource:apps/v1/Deployment[*Deployments*], then click *datasphere-ui*.
@@ -31,13 +40,7 @@ starts a third replacement immediately. The Service kept routing to the 2 health
 throughout -- no outage.
 ====
 
-[NOTE]
-====
-With multiple replicas, the Service load-balances across all pods with matching labels.
-Losing 1 pod out of 3 means the other 2 handle requests without interruption. This is
-why production workloads always run more than 1 replica.
-====
-
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Scale the UI deployment to 3 replicas:
@@ -47,6 +50,7 @@ Scale the UI deployment to 3 replicas:
 oc scale deployment datasphere-ui --replicas=3
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -61,6 +65,7 @@ Wait until all 3 pods are ready:
 oc wait --for=condition=ready pod --selector component=ui --timeout=60s
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -84,6 +89,7 @@ Check the pods again immediately:
 oc get pods --selector component=ui
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----

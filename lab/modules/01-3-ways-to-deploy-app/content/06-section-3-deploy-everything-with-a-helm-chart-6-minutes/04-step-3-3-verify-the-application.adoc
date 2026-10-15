@@ -1,7 +1,7 @@
 = Step 3.3: Verify the application
 :source-highlighter: highlightjs
 
-
+[%collapsible%open]
 .Using the Web Console
 ====
 In console:qs-nav-topology[*Topology*], all three components appear together -- UI, API, and Redis -- deployed as a
@@ -13,10 +13,7 @@ image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/14-topol
 Click the *open URL* icon on `datasphere-ui` to open the application.
 ====
 
-All three components -- UI, API, and Redis -- fully operational, from a single command. Every
-resource you created across Section 2 was created here in one shot, plus a Redis database,
-with no opportunity for steps to be missed or applied in the wrong order.
-
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -26,3 +23,8 @@ oc get route datasphere-ui
 
 Copy the URL from the `HOST/PORT` column and open it in your browser.
 ====
+
+All three components -- UI, API, and Redis -- fully operational, from a single command. Every
+resource you created across Section 2 was created here in one shot, plus a Redis database,
+with no opportunity for steps to be missed or applied in the wrong order.
+

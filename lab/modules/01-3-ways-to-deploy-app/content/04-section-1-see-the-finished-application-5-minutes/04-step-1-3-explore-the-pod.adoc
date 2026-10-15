@@ -6,6 +6,7 @@ them a shared network and storage context. Pods are ephemeral -- they can be cre
 and replaced at any time. A *Deployment* manages this lifecycle and ensures the right number of
 pods are always running.
 
+[%collapsible%open]
 .Using the Web Console
 ====
 Click the name of the `datasphere-ui-*` pod to open its detail page.
@@ -20,6 +21,7 @@ the UI container -- each line records an HTTP request with the URL, status code,
 response size.
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Inspect the frontend pod in detail. The `-l component=ui` flag selects pods by label:
@@ -29,6 +31,7 @@ Inspect the frontend pod in detail. The `-l component=ui` flag selects pods by l
 oc describe pod -l component=ui
 ----
 
+[%collapsible%open]
 .Expected output (key fields)
 =====
 [subs="attributes+"]

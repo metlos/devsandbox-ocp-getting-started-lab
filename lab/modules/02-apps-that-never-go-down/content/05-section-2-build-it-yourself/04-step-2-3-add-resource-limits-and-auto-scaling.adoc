@@ -5,6 +5,7 @@ The HPA needs CPU metrics to make scaling decisions. Resource requests define th
 ("25 millicores is what this pod needs at rest") -- without them, the HPA has nothing to
 measure against.
 
+[%collapsible%open]
 .Using the Web Console
 ====
 . In console:qs-nav-workloads[*Workloads*] → resource:apps/v1/Deployment[*Deployments*], click *datasphere-api*, then click *Actions* → *Edit resource limits*.
@@ -32,6 +33,7 @@ image::../../../../../assets/images/console-guide/lab-02-apps-never-down/15-add-
 * *CPU Utilization*: `50`
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Set resource requests and limits on the API deployment:
@@ -41,6 +43,7 @@ Set resource requests and limits on the API deployment:
 oc set resources deployment/datasphere-api --requests=cpu=25m,memory=64Mi --limits=cpu=100m,memory=128Mi
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -55,6 +58,7 @@ Create the HPA with a minimum of 2 replicas:
 oc autoscale deployment/datasphere-api --min=2 --max=5 --cpu=50%
 ----
 
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -69,6 +73,7 @@ Check the HPA. It takes about 60 seconds for the metrics server to report the fi
 oc get hpa
 ----
 
+[%collapsible%open]
 .Expected output (initial)
 =====
 ----
@@ -87,6 +92,7 @@ After about 60 seconds, check again:
 oc get hpa
 ----
 
+[%collapsible%open]
 .Expected output (after metrics available)
 =====
 ----
@@ -112,6 +118,7 @@ A few things worth knowing about the HPA you just created:
 Now test it. Open the DataSphere app you deployed in Step 2.2 and drag the
 *Simulated Traffic* slider to about *50%*:
 
+[%collapsible%open]
 .Using the Web Console
 ====
 Watch the HPA details page (console:qs-nav-workloads[*Workloads*] → resource:autoscaling/v2/HorizontalPodAutoscaler[*HorizontalPodAutoscalers*] → *datasphere-api*).
@@ -123,6 +130,7 @@ image::../../../../../assets/images/console-guide/lab-02-apps-never-down/20-hpa-
 Slide back to *0%* when done.
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]

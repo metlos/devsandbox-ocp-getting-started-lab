@@ -4,6 +4,7 @@
 A *Service* gives your application a stable internal network address. Even if the Pod restarts
 and gets a new IP address, the Service address stays the same.
 
+[%collapsible%open]
 .Using the Web Console
 ====
 In the left navigation, expand *console:qs-nav-networking[Networking]* and click *resource:v1/Service[Services]*.
@@ -19,6 +20,7 @@ internal DNS name -- `datasphere-ui.{datasphere-namespace}.svc.cluster.local` --
 applications inside the cluster use to reach this Service by name.
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -26,6 +28,7 @@ applications inside the cluster use to reach this Service by name.
 oc describe service datasphere-ui
 ----
 
+[%collapsible%open]
 .Expected output (key fields)
 =====
 ----

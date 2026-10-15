@@ -15,6 +15,7 @@ Trigger a health failure. In your terminal run:
 curl -s -X POST https://$(oc get route datasphere-ui -o jsonpath='{.spec.host}')/api/break
 ----
 
+[%collapsible%open]
 .Expected output
 ====
 ----
@@ -25,6 +26,7 @@ curl -s -X POST https://$(oc get route datasphere-ui -o jsonpath='{.spec.host}')
 NOTE: This request hit 1 of the API pods through the Service load balancer. Only that pod
 has its health flag set to broken -- the others remain healthy.
 
+[%collapsible%open]
 .Using the Web Console
 ====
 Go to console:qs-nav-workloads[*Workloads*] → resource:v1/Pod[*Pods*] and watch the `datasphere-api-*` pods. Within about 40 seconds:
@@ -46,6 +48,7 @@ creates a replacement. Here, the liveness probe *restarts* the existing containe
 Probes catch sick applications; ReplicaSets catch dead ones.
 ====
 
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Watch the pods:

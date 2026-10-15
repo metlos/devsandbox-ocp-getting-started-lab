@@ -17,6 +17,7 @@ click the *console:qs-masthead-help[?]* icon in the top-right corner, select *Co
 that matches your operating system.
 
 
+[%collapsible%open]
 .Expected output
 ====
 [subs="attributes+"]
