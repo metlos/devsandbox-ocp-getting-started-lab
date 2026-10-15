@@ -1,2 +1,0 @@
-= Get connected
-:source-highlighter: highlightjs

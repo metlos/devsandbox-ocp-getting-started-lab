@@ -1,61 +1,11 @@
 = Step 2.2: Deploy the application
 :source-highlighter: highlightjs
 
-[%collapsible]
-.Using the Terminal (CLI)
-====
-Deploy the DataSphere UI from its container image:
-
-[source,role="execute",subs="attributes+"]
-----
-oc new-app {datasphere-ui-image} --name=datasphere-ui
-----
-
-[%collapsible]
-.Expected output
-=====
-----
---> Found container image ... ({datasphere-ui-image})
-    ...
---> Creating resources ...
-    imagestream.image.openshift.io "datasphere-ui" created
-    deployment.apps "datasphere-ui" created
-    service "datasphere-ui" created
---> Success
-    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
-     'oc expose service/datasphere-ui'
-    Run 'oc status' to view your app.
-----
-=====
-
-`oc new-app` created three resources: an ImageStream, a Deployment, and a Service.
-The output tells you the app isn't externally accessible yet -- you'll fix that next.
-
-TIP: If you see `imagestreams.image.openshift.io "datasphere-ui" already exists`, the
-ImageStream was already created from a previous attempt. Run
-`oc delete all --selector app=datasphere-ui -n {lab-namespace}` to clean up, then re-run the
-`oc new-app` command above.
-
-Wait for the pod to come up:
-
-[source,role="execute"]
-----
-oc rollout status deployment/datasphere-ui
-----
-
-[%collapsible]
-.Expected output
-=====
-----
-deployment "datasphere-ui" successfully rolled out
-----
-=====
-====
 
 [%collapsible]
 .Using the Web Console
 ====
-In the top navigation, select the *Workloads* tab, then click on the *Add page* link.
+In the top navigation of the project, select the *Workloads* tab, then click on the *Add page* link.
 Select the *Container Images* card to deploy an existing Image from an Image registry or Image stream tag.
 
 Fill in the form:
@@ -90,3 +40,50 @@ NOTE: This same rollout process happens every time you deploy a new version. Ope
 new pods first, waits for them to be healthy, then scales down the old ones -- no downtime,
 no manual coordination.
 
+.Using the Terminal (CLI)
+====
+Deploy the DataSphere UI from its container image:
+
+[source,role="execute",subs="attributes+"]
+----
+oc new-app {datasphere-ui-image} --name=datasphere-ui
+----
+
+.Expected output
+=====
+----
+--> Found container image ... ({datasphere-ui-image})
+    ...
+--> Creating resources ...
+    imagestream.image.openshift.io "datasphere-ui" created
+    deployment.apps "datasphere-ui" created
+    service "datasphere-ui" created
+--> Success
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose service/datasphere-ui'
+    Run 'oc status' to view your app.
+----
+=====
+
+`oc new-app` created three resources: an ImageStream, a Deployment, and a Service.
+The output tells you the app isn't externally accessible yet -- you'll fix that next.
+
+TIP: If you see `imagestreams.image.openshift.io "datasphere-ui" already exists`, the
+ImageStream was already created from a previous attempt. Run
+`oc delete all --selector app=datasphere-ui -n {lab-namespace}` to clean up, then re-run the
+`oc new-app` command above.
+
+Wait for the pod to come up:
+
+[source,role="execute"]
+----
+oc rollout status deployment/datasphere-ui
+----
+
+.Expected output
+=====
+----
+deployment "datasphere-ui" successfully rolled out
+----
+=====
+====

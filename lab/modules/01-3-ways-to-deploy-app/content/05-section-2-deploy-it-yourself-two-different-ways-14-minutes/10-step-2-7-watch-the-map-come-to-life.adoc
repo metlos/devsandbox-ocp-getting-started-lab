@@ -1,21 +1,9 @@
 = Step 2.7: Watch the map come to life
 :source-highlighter: highlightjs
 
-[%collapsible]
-.Using the Terminal (CLI)
-====
-[source,role="execute"]
-----
-oc get route datasphere-ui
-----
-
-Copy the URL from the `HOST/PORT` column and open it in your browser.
-====
-
-[%collapsible]
 .Using the Web Console
 ====
-In *Topology*, both `datasphere-ui` and `datasphere-api` now appear with solid blue rings.
+In console:qs-nav-topology[*Topology*], both `datasphere-ui` and `datasphere-api` now appear with solid blue rings.
 Notice that `datasphere-api` shows a *Python logo* -- the console detected the Python
 builder used in Step 2.6 and set the icon automatically.
 
@@ -33,3 +21,12 @@ This is OpenShift's internal DNS in practice: the UI is configured to forward `/
 to `datasphere-api:8080`. OpenShift resolves that name to the Service, which routes to the pod.
 Add a backend, the frontend connects to it. That's it.
 
+.Using the Terminal (CLI)
+====
+[source,role="execute"]
+----
+oc get route datasphere-ui
+----
+
+Copy the URL from the `HOST/PORT` column and open it in your browser.
+====

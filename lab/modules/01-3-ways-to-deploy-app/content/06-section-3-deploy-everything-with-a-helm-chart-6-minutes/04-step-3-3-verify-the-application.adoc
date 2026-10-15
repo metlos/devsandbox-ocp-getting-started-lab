@@ -1,21 +1,10 @@
 = Step 3.3: Verify the application
 :source-highlighter: highlightjs
 
-[%collapsible]
-.Using the Terminal (CLI)
-====
-[source,role="execute"]
-----
-oc get route datasphere-ui
-----
 
-Copy the URL from the `HOST/PORT` column and open it in your browser.
-====
-
-[%collapsible]
 .Using the Web Console
 ====
-In *Topology*, all three components appear together -- UI, API, and Redis -- deployed as a
+In console:qs-nav-topology[*Topology*], all three components appear together -- UI, API, and Redis -- deployed as a
 single Helm release.
 
 // SCREENSHOT NEEDED: Topology view in {lab-helm-namespace} showing datasphere-ui, datasphere-api, AND datasphere-redis all deployed with solid blue rings (3 components from the Helm chart)
@@ -28,3 +17,12 @@ All three components -- UI, API, and Redis -- fully operational, from a single c
 resource you created across Section 2 was created here in one shot, plus a Redis database,
 with no opportunity for steps to be missed or applied in the wrong order.
 
+.Using the Terminal (CLI)
+====
+[source,role="execute"]
+----
+oc get route datasphere-ui
+----
+
+Copy the URL from the `HOST/PORT` column and open it in your browser.
+====

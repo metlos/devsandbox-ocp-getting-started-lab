@@ -5,7 +5,7 @@ metadata:
   description: |
     Get hands-on with Red Hat OpenShift through a self-paced lab experience for learning core OpenShift concepts. 
     Select one of three modules — each builds on a pre-deployed sample application called DataSphere, which you will deploy, 
-    scale, and automate using real OpenShift tooling. No cluster setup required. Your environment is ready when you arrive.
+    scale, and automate using real OpenShift tooling.
 
     ## Choose Your Module
     |===
@@ -31,8 +31,7 @@ metadata:
     * A dedicated OpenShift namespace scoped to your login, isolated from other users
     * A pre-deployed OpenShift cluster with Gitea, GitOps, and Pipelines ready to use
     * A Gitea repository pre-seeded with the DataSphere application source
-    * A Showroom lab guide accessible in your browser — step-by-step instructions alongside your terminal
-    * OpenShift web console access with a personal Keycloak login
+    * A lab guide accessible in your browser — step-by-step instructions alongside your terminal
 
     ## Featured Technology
 
@@ -55,7 +54,7 @@ metadata:
     ** Configure an HPA to scale pods automatically under CPU load
     ** Set resource requests and limits to enforce fair scheduling
     ** Simulate pod failure and observe OpenShift self-healing behavior in real time
-    * Module 3 — Git Is Your Source of Truth
+    * Module 3 — Git Is Your Source of Truth *CURRENTLY UNAVAILABLE*
     ** Create an ArgoCD Application pointing to your personal Gitea repository
     ** Sync DataSphere from Git and verify the deployed state in the ArgoCD UI
     ** Edit a manifest in Gitea and push the change
