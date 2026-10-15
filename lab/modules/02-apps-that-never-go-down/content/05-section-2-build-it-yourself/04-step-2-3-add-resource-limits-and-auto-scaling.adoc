@@ -121,7 +121,8 @@ Now test it. Open the DataSphere app you deployed in Step 2.2 and drag the
 [%collapsible%open]
 .Using the Web Console
 ====
-Watch the HPA details page (console:qs-nav-workloads[*Workloads*] → resource:autoscaling/v2/HorizontalPodAutoscaler[*HorizontalPodAutoscalers*] → *datasphere-api*).
+Watch the HPA details page (console:qs-nav-workloads[*Workloads*] → resource:autoscaling/v2/HorizontalPodAutoscaler[*HorizontalPodAutoscalers*] → 
+resource:autoscaling/v2/HorizontalPodAutoscaler[*datasphere-api*,name=datasphere-api,namespace={lab-namespace}]).
 The *Current replicas* count climbs as CPU crosses the threshold.
 
 // SCREENSHOT NEEDED: HPA details page while scaled up — showing Current replicas > 2, Desired replicas climbing, and Last scale time updated
