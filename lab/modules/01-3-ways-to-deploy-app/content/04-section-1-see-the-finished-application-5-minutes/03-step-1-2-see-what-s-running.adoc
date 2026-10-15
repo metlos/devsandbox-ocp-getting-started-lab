@@ -4,7 +4,7 @@
 [%collapsible%open]
 .Using the Web Console
 ====
-In the left navigation, expand *console:qs-nav-workloads[Workloads]* and click *resource:v1/Pods[Pods]*.
+In the left navigation, expand *console:qs-nav-workloads[Workloads]* and click *resource:v1/Pod[Pods]*.
 
 image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running]
 
