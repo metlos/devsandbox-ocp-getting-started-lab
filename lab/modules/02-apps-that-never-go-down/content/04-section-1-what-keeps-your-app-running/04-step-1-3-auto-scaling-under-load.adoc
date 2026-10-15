@@ -8,7 +8,37 @@ The Horizontal Pod Autoscaler (HPA) watches CPU metrics and automatically adjust
 count. When CPU climbs above a threshold, it adds pods. When load drops, it removes them.
 The pre-deployed DataSphere API already has an HPA configured.
 
-[%collapsible]
+[NOTE]
+====
+The HPA scales up quickly (within 15--30 seconds of crossing the threshold) but scales
+down more slowly. The pre-deployed DataSphere uses a 20-second scale-down stabilization
+window for demo purposes. The production default is 5 minutes: this prevents oscillation
+if load fluctuates up and down.
+====
+
+[%collapsible%open]
+.Using the Web Console
+====
+In the left navigation, click console:qs-nav-workloads[*Workloads*] → resource:autoscaling/v2/HorizontalPodAutoscaler[*HorizontalPodAutoscalers*]. Click *datasphere-api*.
+
+// SCREENSHOT NEEDED: Workloads → HorizontalPodAutoscalers → datasphere-api detail page, showing Min/Max replicas, Current replicas, and the Conditions section
+image::../../../../../assets/images/console-guide/lab-02-apps-never-down/09-hpa-details.png[HPA detail page showing current replicas, desired replicas, min and max settings]
+
+This page shows *Current replicas* and *Desired replicas* in real time.
+
+Open the `datasphere-api` Deployment (console:qs-nav-workloads[*Workloads*] → resource:apps/v1/Deployment[*Deployments*] → 
+resource:apps/v1/Deployment[*datasphere-api*,name=datasphere-api,namespace={datasphere-namespace}]) and
+click the *Metrics* tab for a live CPU graph.
+
+// SCREENSHOT NEEDED: datasphere-api Deployment → Metrics tab showing CPU usage graph (capture while load is being applied so the spike is visible)
+image::../../../../../assets/images/console-guide/lab-02-apps-never-down/10-deployment-api-metrics.png[datasphere-api Metrics tab showing the CPU usage graph]
+
+Drag the *Simulated Traffic* slider in the DataSphere app to about *50%* and watch the
+*Current replicas* count climb on the HPA page as CPU crosses the threshold. Slide back
+to *0%* when done.
+====
+
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Check the current HPA:
@@ -18,7 +48,7 @@ Check the current HPA:
 oc get hpa
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -39,7 +69,7 @@ watch -n 2 "echo '=== Auto-Scaler ==='; oc get hpa; echo; echo '=== Pod CPU ==='
 NOTE: Make sure the DataSphere slider is at 0% before starting. If the API has already
 scaled up from earlier activity, the HPA numbers will not reflect a clean baseline.
 
-[%collapsible]
+[%collapsible%open]
 .Expected output (after load applied)
 =====
 ----
@@ -66,33 +96,4 @@ datasphere-api-5d4f8b7c9-wv3r2   1/1     Running   0          10s
 =====
 
 Slide back to *0%*. The HPA scales down over about 20 seconds. Press `Ctrl+C` to stop the watch.
-====
-
-[%collapsible]
-.Using the Web Console
-====
-In the left navigation, click *Workloads* → *HorizontalPodAutoscalers*. Click *datasphere-api*.
-
-// SCREENSHOT NEEDED: Workloads → HorizontalPodAutoscalers → datasphere-api detail page, showing Min/Max replicas, Current replicas, and the Conditions section
-image::../../../../../assets/images/console-guide/lab-02-apps-never-down/09-hpa-details.png[HPA detail page showing current replicas, desired replicas, min and max settings]
-
-This page shows *Current replicas* and *Desired replicas* in real time.
-
-Open the `datasphere-api` Deployment (*Workloads* → *Deployments* → *datasphere-api*) and
-click the *Metrics* tab for a live CPU graph.
-
-// SCREENSHOT NEEDED: datasphere-api Deployment → Metrics tab showing CPU usage graph (capture while load is being applied so the spike is visible)
-image::../../../../../assets/images/console-guide/lab-02-apps-never-down/10-deployment-api-metrics.png[datasphere-api Metrics tab showing the CPU usage graph]
-
-Drag the *Simulated Traffic* slider in the DataSphere app to about *50%* and watch the
-*Current replicas* count climb on the HPA page as CPU crosses the threshold. Slide back
-to *0%* when done.
-====
-
-[NOTE]
-====
-The HPA scales up quickly (within 15--30 seconds of crossing the threshold) but scales
-down more slowly. The pre-deployed DataSphere uses a 20-second scale-down stabilization
-window for demo purposes. The production default is 5 minutes: this prevents oscillation
-if load fluctuates up and down.
 ====

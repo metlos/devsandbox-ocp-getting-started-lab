@@ -1,7 +1,20 @@
 = Step 2.7: Watch the map come to life
 :source-highlighter: highlightjs
 
-[%collapsible]
+[%collapsible%open]
+.Using the Web Console
+====
+In console:qs-nav-topology[*Topology*], both `datasphere-ui` and `datasphere-api` now appear with solid blue rings.
+Notice that `datasphere-api` shows a *Python logo* -- the console detected the Python
+builder used in Step 2.6 and set the icon automatically.
+
+Click the *open URL* icon (the arrow-in-box in the top-right corner) on the `datasphere-ui`
+node to open the application.
+
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/12-topology-s2i-api-deployed.png[Topology view showing datasphere-ui and datasphere-api both deployed with the open URL icon on datasphere-ui]
+====
+
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -10,19 +23,6 @@ oc get route datasphere-ui
 ----
 
 Copy the URL from the `HOST/PORT` column and open it in your browser.
-====
-
-[%collapsible]
-.Using the Web Console
-====
-In *Topology*, both `datasphere-ui` and `datasphere-api` now appear with solid blue rings.
-Notice that `datasphere-api` shows a *Python logo* -- the console detected the Python
-builder used in Step 2.6 and set the icon automatically.
-
-Click the *open URL* icon (the arrow-in-box in the top-right corner) on the `datasphere-ui`
-node to open the application.
-
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/12-topology-s2i-api-deployed.png[Topology view showing datasphere-ui and datasphere-api both deployed with the open URL icon on datasphere-ui]
 ====
 
 The map is now populated with datacenter sites. You didn't reconfigure the UI. You didn't update

@@ -1,7 +1,24 @@
 = Step 1.2: See what's running
 :source-highlighter: highlightjs
 
-[%collapsible]
+[%collapsible%open]
+.Using the Web Console
+====
+In the left navigation, expand *console:qs-nav-workloads[Workloads]* and click *resource:v1/Pod[Pods]*.
+
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running]
+
+You'll see 3 pods: `datasphere-api-\*`, `datasphere-redis-\*`, and `datasphere-ui-\*` -- all *Running*
+with *1/1* Ready.
+====
+
+****
+*What about Redis?* Redis is an in-memory data store. The API uses it to keep datacenter
+state consistent across pod restarts and across multiple API replicas. You won't interact
+with Redis directly in this lab -- it runs in the background as a supporting service.
+****
+
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -9,7 +26,7 @@
 oc get all
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output
 =====
 [subs="attributes+"]
@@ -50,21 +67,3 @@ has already scaled the API up under simulated load -- that's expected. You may a
 `WARNING: apps.openshift.io/v1 DeploymentConfig is deprecated` line in the output; this comes
 from OpenShift's own internal components, not from DataSphere, and can be ignored.
 ====
-
-[%collapsible]
-.Using the Web Console
-====
-In the left navigation, expand *Workloads* and click *Pods*.
-
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running]
-
-You'll see 3 pods: `datasphere-api-*`, `datasphere-redis-*`, and `datasphere-ui-*` -- all *Running*
-with *1/1* Ready.
-====
-
-****
-*What about Redis?* Redis is an in-memory data store. The API uses it to keep datacenter
-state consistent across pod restarts and across multiple API replicas. You won't interact
-with Redis directly in this lab -- it runs in the background as a supporting service.
-****
-

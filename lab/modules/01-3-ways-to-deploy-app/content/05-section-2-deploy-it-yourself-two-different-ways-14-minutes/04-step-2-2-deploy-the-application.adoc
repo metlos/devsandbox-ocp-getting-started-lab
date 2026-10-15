@@ -1,7 +1,45 @@
 = Step 2.2: Deploy the application
 :source-highlighter: highlightjs
 
-[%collapsible]
+[%collapsible%open]
+.Using the Web Console
+====
+In the top navigation of the project, select the *Workloads* tab, then click on the *Add page* link.
+Select the *Container Images* card to deploy an existing Image from an Image registry or Image stream tag.
+
+Fill in the form:
+
+. In the *Image name from external registry* field, enter: `{datasphere-ui-image}`
+. Set *Name* to `datasphere-ui`.
+. In the *Application Name* field, change the value to `datasphere-ui` (the form
+  may auto-fill this as `datasphere-ui-app` -- remove the `-app` suffix).
+  This groups components together in the Topology view -- naming it clearly
+  will matter when you add the API in the next step.
+
+// SCREENSHOT NEEDED: Deploy Image form showing {datasphere-ui-image} (1.4.5) in the image field, Name=datasphere-ui, Application Name=datasphere-ui filled in
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/09-deploy-image-form.png[Deploy Image form with datasphere-ui image name entered and Application Name set to datasphere-ui]
+
+. Scroll down to *Advanced options*. Confirm *Target port* is *8080*, then check the
+  *Create a route* checkbox.
++
+// SCREENSHOT NEEDED: Deploy Image Advanced Options section showing Target Port=8080 and Create a route checkbox checked
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/11-deploy-image-create-route-checked.png[Deploy Image form Advanced Options with Create a route checkbox checked and target port 8080]
++
+. Click *Create*.
+
+OpenShift creates a Deployment, a Service, and an edge-terminated Route in one step.
+Wait for the pod ring in *Topology* to turn solid blue before continuing.
+
+TIP: If you see an error that a resource already exists, a previous attempt left
+resources behind. Switch to your terminal and run
+`oc delete all --selector app=datasphere-ui -n {lab-namespace}` to clean up, then try again.
+====
+
+NOTE: This same rollout process happens every time you deploy a new version. OpenShift creates
+new pods first, waits for them to be healthy, then scales down the old ones -- no downtime,
+no manual coordination.
+
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 Deploy the DataSphere UI from its container image:
@@ -11,7 +49,7 @@ Deploy the DataSphere UI from its container image:
 oc new-app {datasphere-ui-image} --name=datasphere-ui
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -43,7 +81,7 @@ Wait for the pod to come up:
 oc rollout status deployment/datasphere-ui
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -51,42 +89,3 @@ deployment "datasphere-ui" successfully rolled out
 ----
 =====
 ====
-
-[%collapsible]
-.Using the Web Console
-====
-In the top navigation, select the *Workloads* tab, then click on the *Add page* link.
-Select the *Container Images* card to deploy an existing Image from an Image registry or Image stream tag.
-
-Fill in the form:
-
-. In the *Image name from external registry* field, enter: `{datasphere-ui-image}`
-. Set *Name* to `datasphere-ui`.
-. In the *Application Name* field, change the value to `datasphere-ui` (the form
-  may auto-fill this as `datasphere-ui-app` -- remove the `-app` suffix).
-  This groups components together in the Topology view -- naming it clearly
-  will matter when you add the API in the next step.
-
-// SCREENSHOT NEEDED: Deploy Image form showing {datasphere-ui-image} (1.4.5) in the image field, Name=datasphere-ui, Application Name=datasphere-ui filled in
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/09-deploy-image-form.png[Deploy Image form with datasphere-ui image name entered and Application Name set to datasphere-ui]
-
-. Scroll down to *Advanced options*. Confirm *Target port* is *8080*, then check the
-  *Create a route* checkbox.
-+
-// SCREENSHOT NEEDED: Deploy Image Advanced Options section showing Target Port=8080 and Create a route checkbox checked
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/11-deploy-image-create-route-checked.png[Deploy Image form Advanced Options with Create a route checkbox checked and target port 8080]
-+
-. Click *Create*.
-
-OpenShift creates a Deployment, a Service, and an edge-terminated Route in one step.
-Wait for the pod ring in *Topology* to turn solid blue before continuing.
-
-TIP: If you see an error that a resource already exists, a previous attempt left
-resources behind. Switch to the *Terminal* tab and run
-`oc delete all --selector app=datasphere-ui -n {lab-namespace}` to clean up, then try again.
-====
-
-NOTE: This same rollout process happens every time you deploy a new version. OpenShift creates
-new pods first, waits for them to be healthy, then scales down the old ones -- no downtime,
-no manual coordination.
-

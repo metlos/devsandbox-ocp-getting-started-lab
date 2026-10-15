@@ -1,6 +1,11 @@
 = Module 3: Git Is Your Source of Truth
 :source-highlighter: highlightjs
 
+WARNING: This module is currently not supported. GitOps is not deployed in the cluster
+so you will not be able to explore the functioning lab on your own. You can still
+read the text of the module, even though it has not been updated to take full advantage
+of the features present in the Interactive Labs for OpenShift.
+
 In Modules 1 and 2, you deployed and operated DataSphere by running commands.
 Those commands work -- but they leave no record of what changed, when, or why.
 If a colleague updates something in the cluster, how do you know? If something

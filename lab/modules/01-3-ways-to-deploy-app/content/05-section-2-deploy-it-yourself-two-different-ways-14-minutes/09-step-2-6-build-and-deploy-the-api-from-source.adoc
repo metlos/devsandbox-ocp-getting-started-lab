@@ -1,7 +1,43 @@
 = Step 2.6: Build and deploy the API from source
 :source-highlighter: highlightjs
 
-[%collapsible]
+[%collapsible%open]
+.Using the Web Console
+====
+Click the *console:qs-masthead-import[Quick create]* button in the top right menu, then select *Import from Git* (you may need to reduce this drawer to reveal the top menu)
+
+. In the *Git Repo URL* field, paste: `https://{gitea-rootUrl}/{gitea-admin-username}/datasphere-api`
+. OpenShift detects the repository and selects a build strategy. If it shows *Dockerfile*
+  instead of *Builder Image*, click *Edit Import Strategy* and select *Builder Image*,
+  then choose the *Python* builder.
+. Open the *Application* dropdown (not the *Application Name* text field below it)
+  and select *No Application Group* -- the API should be separate from the
+  `datasphere-ui` group you created in Step 2.2.
+. Set *Name* to `datasphere-api`. The *Application Name* field should clear itself
+  when you select *No Application Group*; if it doesn't, leave it blank.
+. Scroll down to *Advanced options* and *uncheck* *Create a Route* -- the API should
+  not be publicly accessible.
+. Click *Create*.
+
+// SCREENSHOT NEEDED: Import from Git form showing Gitea URL pasted, Builder Image selected (Python), Application=No Application Group, Name=datasphere-api, Create Route unchecked
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/10-import-from-git-form.png[Import from Git form with Gitea datasphere-api URL, Builder Image selected, No Application Group, and Create Route unchecked]
+
+To watch the build progress:
+
+. In the left navigation, click console:qs-nav-builds[*Builds*], resource:build.openshift.io/v1/BuildConfig[*BuildConfigs*].
+. Click the resource:build.openshift.io/v1/BuildConfig[*datasphere-api*,name=datasphere-api,namespace={gitea-namespace}] BuildConfig that appears.
+. Select the *Builds* tab, click the build name, then click *Logs*.
+
+// SCREENSHOT NEEDED: Build Logs page for datasphere-api-1 showing the S2I build output with pip install lines and "Push successful" at the end
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/10b-build-logs-datasphere-api.png[Build logs page showing S2I build output including pip install and Push successful]
+
+When the build shows *Complete*, the Deployment starts automatically.
+====
+
+That entire build ran inside the cluster: no Docker installed locally, no CI/CD pipeline
+configured, no external registry account needed.
+
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 The `python~` prefix tells OpenShift two things: use the Python builder image, and build from
@@ -13,7 +49,7 @@ installs dependencies, and packages everything into a container image -- all ins
 oc new-app python~{gitea-rootUrl}/{gitea-admin-username}/datasphere-api --name=datasphere-api
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -39,7 +75,7 @@ Watch the build run inside the cluster:
 oc logs -f buildconfig/datasphere-api
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output (truncated)
 =====
 ----
@@ -62,7 +98,7 @@ Wait for the deployment:
 oc rollout status deployment/datasphere-api
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output
 =====
 ----
@@ -70,40 +106,3 @@ deployment "datasphere-api" successfully rolled out
 ----
 =====
 ====
-
-[%collapsible]
-.Using the Web Console
-====
-Click the *console:qs-masthead-import[Quick create]* button in the top right menu, then select *Import from Git* (you may need to reduce this drawer to reveal the top menu)
-
-. In the *Git Repo URL* field, paste: `https://{gitea-rootUrl}/{gitea-admin-username}/datasphere-api`
-. OpenShift detects the repository and selects a build strategy. If it shows *Dockerfile*
-  instead of *Builder Image*, click *Edit Import Strategy* and select *Builder Image*,
-  then choose the *Python* builder.
-. Open the *Application* dropdown (not the *Application Name* text field below it)
-  and select *No Application Group* -- the API should be separate from the
-  `datasphere-ui` group you created in Step 2.2.
-. Set *Name* to `datasphere-api`. The *Application Name* field should clear itself
-  when you select *No Application Group*; if it doesn't, leave it blank.
-. Scroll down to *Advanced options* and *uncheck* *Create a Route* -- the API should
-  not be publicly accessible.
-. Click *Create*.
-
-// SCREENSHOT NEEDED: Import from Git form showing Gitea URL pasted, Builder Image selected (Python), Application=No Application Group, Name=datasphere-api, Create Route unchecked
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/10-import-from-git-form.png[Import from Git form with Gitea datasphere-api URL, Builder Image selected, No Application Group, and Create Route unchecked]
-
-To watch the build progress:
-
-. In the left navigation, click *Builds*.
-. Click the *datasphere-api* BuildConfig that appears.
-. Select the *Builds* tab, click the build name, then click *Logs*.
-
-// SCREENSHOT NEEDED: Build Logs page for datasphere-api-1 showing the S2I build output with pip install lines and "Push successful" at the end
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/10b-build-logs-datasphere-api.png[Build logs page showing S2I build output including pip install and Push successful]
-
-When the build shows *Complete*, the Deployment starts automatically.
-====
-
-That entire build ran inside the cluster: no Docker installed locally, no CI/CD pipeline
-configured, no external registry account needed.
-

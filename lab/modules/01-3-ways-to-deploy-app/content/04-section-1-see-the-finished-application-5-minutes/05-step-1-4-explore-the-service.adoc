@@ -4,7 +4,23 @@
 A *Service* gives your application a stable internal network address. Even if the Pod restarts
 and gets a new IP address, the Service address stays the same.
 
-[%collapsible]
+[%collapsible%open]
+.Using the Web Console
+====
+In the left navigation, expand *console:qs-nav-networking[Networking]* and click *resource:v1/Service[Services]*.
+
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/04-services-list.png[Services list showing datasphere-api, datasphere-ui, and redis with their pod selectors and cluster IPs]
+
+Click *datasphere-ui* to open the Service detail page.
+
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/05-service-ui-details.png[Service detail page for datasphere-ui showing pod selector, cluster IP, hostname, and port mapping]
+
+Notice the *Pod selector* field: `app=datasphere, component=ui`. The *Hostname* shows the
+internal DNS name -- `datasphere-ui.{datasphere-namespace}.svc.cluster.local` -- that other
+applications inside the cluster use to reach this Service by name.
+====
+
+[%collapsible%open]
 .Using the Terminal (CLI)
 ====
 [source,role="execute"]
@@ -12,7 +28,7 @@ and gets a new IP address, the Service address stays the same.
 oc describe service datasphere-ui
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output (key fields)
 =====
 ----
@@ -30,20 +46,3 @@ and Session Affinity. The output above highlights only the fields relevant to th
 Notice the *Selector* field: `app=datasphere,component=ui`. This label-based selection is how
 OpenShift connects resources together -- the Service routes traffic to every Pod that matches.
 ====
-
-[%collapsible]
-.Using the Web Console
-====
-In the left navigation, expand *Networking* and click *Services*.
-
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/04-services-list.png[Services list showing datasphere-api, datasphere-ui, and redis with their pod selectors and cluster IPs]
-
-Click *datasphere-ui* to open the Service detail page.
-
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/05-service-ui-details.png[Service detail page for datasphere-ui showing pod selector, cluster IP, hostname, and port mapping]
-
-Notice the *Pod selector* field: `app=datasphere, component=ui`. The *Hostname* shows the
-internal DNS name -- `datasphere-ui.{datasphere-namespace}.svc.cluster.local` -- that other
-applications inside the cluster use to reach this Service by name.
-====
-

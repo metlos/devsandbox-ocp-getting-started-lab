@@ -8,14 +8,14 @@ The DataSphere API has a liveness probe on the `/health` endpoint. If it fails 3
 row, OpenShift restarts the container. A readiness probe on the same endpoint removes the pod
 from the Service load balancer the moment it stops passing -- so no traffic reaches the broken pod.
 
-Trigger a health failure. Switch to the *Terminal* tab and run:
+Trigger a health failure. In your terminal run:
 
 [source,role="execute",subs="attributes+"]
 ----
 curl -s -X POST https://$(oc get route datasphere-ui -o jsonpath='{.spec.host}')/api/break
 ----
 
-[%collapsible]
+[%collapsible%open]
 .Expected output
 ====
 ----
@@ -26,23 +26,10 @@ curl -s -X POST https://$(oc get route datasphere-ui -o jsonpath='{.spec.host}')
 NOTE: This request hit 1 of the API pods through the Service load balancer. Only that pod
 has its health flag set to broken -- the others remain healthy.
 
-[%collapsible]
-.Using the Terminal (CLI)
-====
-Watch the pods:
-
-[source,role="execute"]
-----
-watch oc get pods --selector component=api
-----
-
-Within 30 seconds, the *RESTARTS* column increments on one pod. Press `Ctrl+C` to stop.
-====
-
-[%collapsible]
+[%collapsible%open]
 .Using the Web Console
 ====
-Go to *Workloads* → *Pods* and watch the `datasphere-api-*` pods. Within about 40 seconds:
+Go to console:qs-nav-workloads[*Workloads*] → resource:v1/Pod[*Pods*] and watch the `datasphere-api-*` pods. Within about 40 seconds:
 
 . One pod shows `0/1` in the *Ready* column: the readiness probe pulled it from the Service
 . The *Restarts* counter increments: the liveness probe restarted the container
@@ -60,3 +47,17 @@ Notice the difference from Step 1.1: deleting a pod removes it entirely and the 
 creates a replacement. Here, the liveness probe *restarts* the existing container in place.
 Probes catch sick applications; ReplicaSets catch dead ones.
 ====
+
+[%collapsible%open]
+.Using the Terminal (CLI)
+====
+Watch the pods:
+
+[source,role="execute"]
+----
+watch oc get pods --selector component=api
+----
+
+Within 30 seconds, the *RESTARTS* column increments on one pod. Press `Ctrl+C` to stop.
+====
+
