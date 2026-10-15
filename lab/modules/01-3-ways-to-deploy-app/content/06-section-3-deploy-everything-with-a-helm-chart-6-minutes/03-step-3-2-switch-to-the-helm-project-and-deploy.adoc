@@ -6,18 +6,13 @@ Switch to `{lab-helm-namespace}` -- this is a separate, clean namespace for the 
 [%collapsible%open]
 .Using the Web Console
 ====
-Click console:qs-nav-home[Home] in the main navigation menu, click resource:project.openshift.io/v1/Project[Project,scope=cluster] and in the Project selector, 
+Click console:qs-nav-home[Home] in the main navigation menu, click resource:project.openshift.io/v1/Project[Projects,scope=cluster] and in the Project selector, 
 switch to *`{lab-helm-namespace}`*.
 
 NOTE: The DataSphere chart is served from a direct Gitea URL and is not registered in the
 OpenShift Helm catalog. Run the `helm install` command from the Terminal as shown in the CLI
 steps below, then return here to verify the result.
 
-After the `helm install` completes, expand *console:qs-nav-ecosystem[Ecosystem]* and click *console:qs-nav-helm[Helm]* in the left navigation. The *datasphere*
-release appears with *Status: deployed* and *Revision: 1*.
-
-// SCREENSHOT NEEDED: Helm Releases page in {lab-helm-namespace} showing the datasphere release with Status: deployed and Revision: 1
-image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/13-helm-releases-deployed.png[Helm Releases page showing the datasphere release deployed at Revision 1]
 ====
 
 [%collapsible%open]
@@ -70,3 +65,12 @@ deployment "datasphere-api" successfully rolled out
 =====
 ====
 
+[%collapsible%open]
+.Using the Web Console
+====
+After the `helm install` completes, expand *console:qs-nav-ecosystem[Ecosystem]* and click *console:qs-nav-helm[Helm]* in the left navigation. The *datasphere*
+release appears with *Status: deployed* and *Revision: 1*.
+
+// SCREENSHOT NEEDED: Helm Releases page in {lab-helm-namespace} showing the datasphere release with Status: deployed and Revision: 1
+image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/13-helm-releases-deployed.png[Helm Releases page showing the datasphere release deployed at Revision 1]
+====
