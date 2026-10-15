@@ -31,7 +31,7 @@ OpenShift creates a Deployment, a Service, and an edge-terminated Route in one s
 Wait for the pod ring in *Topology* to turn solid blue before continuing.
 
 TIP: If you see an error that a resource already exists, a previous attempt left
-resources behind. Switch to the *Terminal* tab and run
+resources behind. Switch to your terminal and run
 `oc delete all --selector app=datasphere-ui -n {lab-namespace}` to clean up, then try again.
 ====
 
