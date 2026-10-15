@@ -4,7 +4,7 @@
 [%collapsible%open]
 .Using the Web Console
 ====
-In the left navigation, expand *console:qs-nav-home[Home]*, select *resource:project.openshift.io/v1/Project[Projects]*,
+In the left navigation, expand *console:qs-nav-home[Home]*, select *resource:project.openshift.io/v1/Project[Projects,scope=cluster]*,
 then choose the resource:project.openshift.io/v1/Project[*`{lab-namespace}`*,scope=cluster,name={lab-namespace}] project.
 
 // SCREENSHOT NEEDED: Developer perspective Topology view showing {lab-namespace} selected and "No resources found" / empty state
