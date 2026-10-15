@@ -1,7 +1,7 @@
 = Terminal (CLI)
 :source-highlighter: highlightjs
 
-Expand the console:qs-nav-usermenu[top-right menu] showing your username, then click "https://oauth-openshift.{openshift-cluster-ingress-domain}/oauth/token/request[Copy login command]".
+Expand the console:qs-masthead-usermenu[top-right menu] showing your username, then click "https://oauth-openshift.{openshift-cluster-ingress-domain}/oauth/token/request[Copy login command]".
 Click on "Display token" then copy the `oc login` command.
 
 Open a terminal session on your machine and paste the `oc login` command
