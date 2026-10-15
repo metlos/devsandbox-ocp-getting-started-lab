@@ -8,7 +8,7 @@ measure against.
 [%collapsible%open]
 .Using the Web Console
 ====
-. In console:qs-nav-workloads[*Workloads*] → resource:apps/v1/Deployment[*Deployments*], click *datasphere-api*, then click *Actions* → *Edit resource limits*.
+. In console:qs-nav-workloads[*Workloads*] → resource:apps/v1/Deployment[*Deployments*], click resource:apps/v1/Deployment[*datasphere-api*,name=datasphere-api,namespace={lab-namespace}], then click *Actions* → *Edit resource limits*.
 
 // SCREENSHOT NEEDED: Actions → Edit resource limits dialog on datasphere-api Deployment with CPU/Memory Request and Limit fields filled in (25m/100m CPU, 64Mi/128Mi memory)
 image::../../../../../assets/images/console-guide/lab-02-apps-never-down/14-edit-resource-limits.png[Edit resource limits dialog showing CPU and Memory Request and Limit fields]
