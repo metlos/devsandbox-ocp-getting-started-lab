@@ -3,9 +3,9 @@
 
 Three projects have been provisioned for you:
 
-* resource:project.openshift.io/v1/Project[`{datasphere-namespace}`,scope=cluster]: contains the pre-deployed DataSphere demo app -- explore it in Section 1
-* resource:project.openshift.io/v1/Project[`{lab-namespace}`,scope=cluster]: your clean workspace -- you'll build here in Section 2
-* resource:project.openshift.io/v1/Project[`{lab-helm-namespace}`,scope=cluster]: a second clean workspace -- you'll use this in Section 3
+* resource:project.openshift.io/v1/Project[`{datasphere-namespace}`,scope=cluster,name={datasphere-namespace}]: contains the pre-deployed DataSphere demo app -- explore it in Section 1
+* resource:project.openshift.io/v1/Project[`{lab-namespace}`,scope=cluster,name={lab-namespace}]: your clean workspace -- you'll build here in Section 2
+* resource:project.openshift.io/v1/Project[`{lab-helm-namespace}`,scope=cluster,name={lab-helm-namespace}]: a second clean workspace -- you'll use this in Section 3
 
 NOTE: In OpenShift, a Project is equivalent to a Kubernetes namespace. It scopes your resources and controls access.
 
