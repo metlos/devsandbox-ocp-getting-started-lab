@@ -24,7 +24,7 @@ image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/10-impor
 
 To watch the build progress:
 
-. In the left navigation, click console:qs-nav-builds[*Builds*], resource:build.openshift.io/v1/BuildConfig[BuildConfigs].
+. In the left navigation, click console:qs-nav-builds[*Builds*], resource:build.openshift.io/v1/BuildConfig[*BuildConfigs*].
 . Click the resource:build.openshift.io/v1/BuildConfig[*datasphere-api*,name=datasphere-api,namespace={gitea-namespace}] BuildConfig that appears.
 . Select the *Builds* tab, click the build name, then click *Logs*.
 
